@@ -294,9 +294,12 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .split-tint-green { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(63,178,74,.55), rgba(140,226,63,.12) 70%, transparent); mix-blend-mode: multiply; }
 .split-tint-pink  { position: absolute; inset: 0; background: linear-gradient(270deg, rgba(255,63,164,.6), rgba(255,124,203,.12) 70%, transparent); mix-blend-mode: multiply; }
 
-.split-label { position: absolute; top: 26px; z-index: 4; padding: 10px 20px; border-radius: 100px; font-family:"Fredoka"; font-weight: 700; font-size: 15px; letter-spacing: .04em; backdrop-filter: blur(6px); }
+.split-label { position: absolute; top: 26px; z-index: 4; display: inline-flex; align-items: center; gap: 9px; padding: 10px 20px; border-radius: 100px; font-family:"Fredoka"; font-weight: 700; font-size: 15px; letter-spacing: .04em; backdrop-filter: blur(6px); }
+.split-label::before { content: ""; width: 24px; height: 24px; flex: 0 0 auto; background-size: contain; background-repeat: no-repeat; background-position: center; filter: drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
 .split-label.green { left: 26px; background: rgba(63,178,74,.25); border: 1px solid rgba(140,226,63,.6); color: #d4ff9e; }
 .split-label.pink  { right: 26px; background: rgba(255,63,164,.25); border: 1px solid rgba(255,124,203,.6); color: #ffd1ec; }
+.split-label.green::before { background-image: url("../assets/img/ai/emblem_resistance.png"); }
+.split-label.pink::before  { background-image: url("../assets/img/ai/emblem_sweetlife.png"); }
 .split-cap { position: absolute; bottom: 24px; z-index: 4; max-width: 40%; font-size: 14px; line-height: 1.4; color: rgba(255,255,255,.92); text-shadow: 0 2px 12px rgba(0,0,0,.8); }
 .split-cap.green { left: 26px; }
 .split-cap.pink  { right: 26px; text-align: right; }
@@ -319,7 +322,10 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
    ================================================================= */
 .chars { background: linear-gradient(180deg, var(--bg-2), var(--bg)); }
 .faction-tabs { display: inline-flex; gap: 6px; padding: 6px; border-radius: 100px; background: rgba(255,255,255,.05); border: 1px solid var(--line); margin: 28px auto 0; }
-.faction-tab { padding: 10px 26px; border-radius: 100px; font-family:"Fredoka"; font-weight:600; font-size: 15px; color: var(--muted); transition: .3s var(--ease); }
+.faction-tab { display: inline-flex; align-items: center; gap: 9px; padding: 10px 24px; border-radius: 100px; font-family:"Fredoka"; font-weight:600; font-size: 15px; color: var(--muted); transition: .3s var(--ease); }
+.faction-tab::before { content: ""; width: 22px; height: 22px; flex: 0 0 auto; background-size: contain; background-repeat: no-repeat; background-position: center; }
+.faction-tab.green::before { background-image: url("../assets/img/ai/emblem_resistance.png"); }
+.faction-tab.pink::before  { background-image: url("../assets/img/ai/emblem_sweetlife.png"); }
 .faction-tab.active.green { background: linear-gradient(100deg,#aef06a,var(--green)); color: #16280a; }
 .faction-tab.active.pink  { background: linear-gradient(100deg,var(--pink-soft),var(--pink)); color: #fff; }
 
