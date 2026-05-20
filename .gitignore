@@ -1,0 +1,5 @@
+Api.txt
+*.key
+.env
+.DS_Store
+Thumbs.db
