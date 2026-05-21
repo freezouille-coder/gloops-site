@@ -355,6 +355,25 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .char-card:hover .char-desc { max-height: 120px; opacity: 1; margin-top: 10px; }
 
 /* =================================================================
+   DÉCORS — locations gallery
+   ================================================================= */
+.decors { background: var(--bg-2); }
+.decor-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 50px; }
+.decor-card { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16/9; transition: transform .4s var(--ease), border-color .4s, box-shadow .4s; }
+.decor-card.feature { grid-column: 1 / -1; aspect-ratio: 21/9; }
+.decor-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+.decor-card:hover { transform: translateY(-6px); border-color: var(--line-strong); box-shadow: var(--shadow); }
+.decor-card:hover img { transform: scale(1.06); }
+.decor-card.g:hover { box-shadow: var(--shadow-green); border-color: rgba(140,226,63,.4); }
+.decor-card.p:hover { box-shadow: var(--shadow-pink); border-color: rgba(255,63,164,.4); }
+.decor-card figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 5px; background: linear-gradient(180deg, transparent, rgba(12,7,18,.5) 45%, rgba(12,7,18,.94)); }
+.decor-name { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: clamp(1.15rem, 2vw, 1.6rem); }
+.decor-desc { color: var(--muted); font-size: 14px; line-height: 1.45; max-width: 60ch; }
+.decor-card.g .decor-name { color: #d4ff9e; }
+.decor-card.p .decor-name { color: #ffd1ec; }
+@media (max-width: 760px){ .decor-grid { grid-template-columns: 1fr; } .decor-card.feature { aspect-ratio: 16/9; } }
+
+/* =================================================================
    STORY / PILOTE — horizontal scene scroller
    ================================================================= */
 .story { background: var(--bg); }
