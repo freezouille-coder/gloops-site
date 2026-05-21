@@ -11,7 +11,11 @@
   /* ---------- I18N (FR default, EN dictionary) ---------- */
   const EN = {
     "nav.conflit": `The Conflict`, "nav.chars": `Characters`, "nav.story": `The Story`,
-    "nav.videos": `Videos`, "nav.eco": `The Ecosystem`, "nav.invest": `Invest`, "nav.decors": `Sets`,
+    "nav.videos": `Videos`, "nav.eco": `The Ecosystem`, "nav.invest": `Invest`, "nav.decors": `Sets`, "nav.casting": `Cast`,
+    "casting.eyebrow": `The voices`,
+    "casting.title": `A <span class="text-grad-pink">top-tier</span> voice cast`,
+    "casting.sub": `Target cast — to be confirmed. Iconic French voice actors envisioned to bring the Gloops to life. (Best-known dubbing roles shown for reference.)`,
+    "casting.alt": `also considered`,
     "decors.eyebrow": `Art direction`,
     "decors.title": `Worlds with <span class="text-grad-gold">character</span>`,
     "decors.sub": `From the candy-dystopian factory to the bucolic farm — every set tells the Green-vs-Pink conflict.`,
