@@ -366,6 +366,10 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .cast-avatar { flex: 0 0 auto; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.3rem; color: #fff; letter-spacing: .02em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
 .cast-card.g .cast-avatar { background: linear-gradient(135deg, #aef06a, var(--green-deep)); color: #16280a; }
 .cast-card.p .cast-avatar { background: linear-gradient(135deg, var(--pink-soft), var(--pink)); }
+.cast-avatar { overflow: hidden; }
+.cast-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.cast-card.g .cast-avatar:has(img) { box-shadow: inset 0 0 0 2px var(--green); }
+.cast-card.p .cast-avatar:has(img) { box-shadow: inset 0 0 0 2px var(--pink); }
 .cast-body { min-width: 0; }
 .cast-role { font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
 .cast-role.g { color: var(--green); } .cast-role.p { color: var(--pink-soft); }
@@ -535,6 +539,52 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .lb-close { position: absolute; top: 24px; right: 28px; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
 .lb-close:hover { background: rgba(255,63,164,.4); transform: rotate(90deg); }
 .lb-close svg { width: 24px; height: 24px; }
+
+/* =================================================================
+   CHARACTER FICHE MODAL
+   ================================================================= */
+.char-modal { position: fixed; inset: 0; z-index: 9600; display: flex; align-items: center; justify-content: center; padding: 4vw; background: rgba(6,3,10,.9); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.char-modal.open { opacity: 1; visibility: visible; }
+.cm-panel { display: grid; grid-template-columns: minmax(0,0.9fr) minmax(0,1.1fr); width: min(960px, 96vw); max-height: 90vh; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius); overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.7); transform: translateY(20px) scale(.98); transition: transform .5s var(--ease-out); }
+.char-modal.open .cm-panel { transform: none; }
+.cm-panel.g { border-color: rgba(140,226,63,.45); }
+.cm-panel.p { border-color: rgba(255,63,164,.45); }
+.cm-hero { position: relative; min-height: 280px; background: #0c0712; }
+.cm-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cm-panel.g .cm-hero { background: radial-gradient(120% 100% at 50% 30%, rgba(46,125,50,.35), #0c0712 70%); }
+.cm-panel.p .cm-hero { background: radial-gradient(120% 100% at 50% 30%, rgba(150,28,100,.35), #0c0712 70%); }
+.cm-info { padding: 34px 34px 30px; overflow-y: auto; }
+.cm-role { font-size: 11.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.cm-role.g { color: var(--green); } .cm-role.p { color: var(--pink-soft); }
+.cm-name { font-family: "Fredoka", sans-serif; font-weight: 700; font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin: 4px 0 12px; line-height: 1; }
+.cm-desc { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+.cm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+.cm-h { display: flex; align-items: center; gap: 8px; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 14px; }
+.cm-ic { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; }
+.cm-like-h .cm-ic { background: rgba(140,226,63,.2); color: var(--green); }
+.cm-dislike-h .cm-ic { background: rgba(255,63,164,.2); color: var(--pink-soft); }
+.cm-list { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.cm-list li { position: relative; padding-left: 16px; color: var(--text); font-size: 13.5px; }
+.cm-list li::before { content: ""; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--muted-2); }
+.cm-like-h + .cm-list li::before { background: var(--green); }
+.cm-dislike-h + .cm-list li::before { background: var(--pink); }
+.cm-voice { margin-top: 22px; padding: 14px 16px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; }
+.cm-voice-label { font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--purple); font-weight: 600; }
+.cm-voice-name { font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 1.05rem; }
+.cm-sb { margin-top: 20px; }
+.cm-sb-label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-2); font-weight: 600; }
+.cm-sb-label em { text-transform: none; letter-spacing: 0; font-style: normal; opacity: .7; }
+.cm-sb-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.cm-sb-strip img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); background: var(--bg-3); }
+.cm-close { position: absolute; top: 24px; right: 28px; z-index: 2; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
+.cm-close:hover { background: rgba(255,63,164,.4); transform: rotate(90deg); }
+.cm-close svg { width: 22px; height: 22px; }
+.char-card { cursor: pointer; }
+@media (hover: hover){ .char-card { cursor: none; } }
+@media (max-width: 720px){
+  .cm-panel { grid-template-columns: 1fr; max-height: 92vh; }
+  .cm-hero { min-height: 240px; aspect-ratio: 16/11; }
+}
 
 /* =================================================================
    MUSIC TOGGLE

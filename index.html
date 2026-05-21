@@ -176,7 +176,7 @@
           </div>
         </article>
         <article class="char-card g reveal d4">
-          <img src="assets/img/chr/To%20improve%20in%20AI/Ouss_N_Titp.png" alt="Ouss & Tito" class="char-img">
+          <img src="assets/img/chr/To%20improve%20in%20AI/Healfy-Ouss_N_Titp.png" alt="Ouss & Tito" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.ouss.role">Le cœur</span>
@@ -225,7 +225,7 @@
           </div>
         </article>
         <article class="char-card p reveal d3">
-          <img src="assets/img/chr/To%20improve%20in%20AI/Mito.png" alt="Mito" class="char-img">
+          <img src="assets/img/chr/To%20improve%20in%20AI/Scientific-Mito.png" alt="Mito" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.mito.role">Le bras droit</span>
@@ -256,7 +256,7 @@
       </div>
       <div class="cast-grid">
         <article class="cast-card g reveal">
-          <div class="cast-avatar">AT</div>
+          <div class="cast-avatar"><img src="assets/img/actors/AlexisTomassian.jpeg" alt="Alexis Tomassian" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role g">Po / MushMaster</span>
             <h3 class="cast-actor">Alexis Tomassian</h3>
@@ -264,7 +264,7 @@
           </div>
         </article>
         <article class="cast-card g reveal d1">
-          <div class="cast-avatar">DP</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Doroth%C3%A9e%20Pouss%C3%A9o.jpeg" alt="Dorothée Pousséo" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role g">Lili</span>
             <h3 class="cast-actor">Dorothée Pousséo</h3>
@@ -272,7 +272,7 @@
           </div>
         </article>
         <article class="cast-card g reveal d2">
-          <div class="cast-avatar">BA</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Bernard%20Alane.webp" alt="Bernard Alane" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role g">Papy Mush</span>
             <h3 class="cast-actor">Bernard Alane</h3>
@@ -290,7 +290,7 @@
           </div>
         </article>
         <article class="cast-card g reveal">
-          <div class="cast-avatar">BL</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Brigitte%20Lecordier.jpeg" alt="Brigitte Lecordier" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role g">Tito</span>
             <h3 class="cast-actor">Brigitte Lecordier</h3>
@@ -299,7 +299,7 @@
           </div>
         </article>
         <article class="cast-card p reveal d1">
-          <div class="cast-avatar">CL</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Christophe%20Lemoine.jpeg" alt="Christophe Lemoine" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role p">Kevin V — Le Roi</span>
             <h3 class="cast-actor">Christophe Lemoine</h3>
@@ -308,7 +308,7 @@
           </div>
         </article>
         <article class="cast-card p reveal d2">
-          <div class="cast-avatar">PP</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Philippe%20Peythieu.jpeg" alt="Philippe Peythieu" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role p">Le Manager</span>
             <h3 class="cast-actor">Philippe Peythieu</h3>
@@ -317,7 +317,7 @@
           </div>
         </article>
         <article class="cast-card p reveal d3">
-          <div class="cast-avatar">FA</div>
+          <div class="cast-avatar"><img src="assets/img/actors/F%C3%A9odor%20Atkine.jpeg" alt="Féodor Atkine" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role p">Dr. Sugar / Shu Ga</span>
             <h3 class="cast-actor">Féodor Atkine</h3>
@@ -326,7 +326,7 @@
           </div>
         </article>
         <article class="cast-card p reveal">
-          <div class="cast-avatar">EM</div>
+          <div class="cast-avatar"><img src="assets/img/actors/Eric%20M%C3%A9tayer.webp" alt="Eric Métayer" loading="lazy"></div>
           <div class="cast-body">
             <span class="cast-role p">Mito</span>
             <h3 class="cast-actor">Eric Métayer</h3>
@@ -580,6 +580,37 @@
       <p class="footer-copy" data-i18n="footer.copy">© 2026 GLOOPS — une création originale produite par Mooncake Studio. Tous droits réservés.</p>
     </div>
   </footer>
+
+  <!-- ===== CHARACTER FICHE MODAL ===== -->
+  <div class="char-modal" id="char-modal" aria-hidden="true">
+    <button class="cm-close" id="cm-close" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="cm-panel" id="cm-panel">
+      <div class="cm-hero"><img id="cm-hero-img" alt=""></div>
+      <div class="cm-info">
+        <span class="cm-role" id="cm-role"></span>
+        <h3 class="cm-name" id="cm-name"></h3>
+        <p class="cm-desc" id="cm-desc"></p>
+        <div class="cm-cols">
+          <div class="cm-col">
+            <h4 class="cm-h cm-like-h"><span class="cm-ic">＋</span><span data-i18n="cm.likes">Ce qu'il aime</span></h4>
+            <ul id="cm-likes" class="cm-list"></ul>
+          </div>
+          <div class="cm-col">
+            <h4 class="cm-h cm-dislike-h"><span class="cm-ic">－</span><span data-i18n="cm.dislikes">Ce qu'il déteste</span></h4>
+            <ul id="cm-dislikes" class="cm-list"></ul>
+          </div>
+        </div>
+        <div class="cm-voice">
+          <span class="cm-voice-label" data-i18n="cm.voice">Voix · casting souhaité</span>
+          <span class="cm-voice-name" id="cm-voice"></span>
+        </div>
+        <div class="cm-sb">
+          <span class="cm-sb-label" data-i18n="cm.storyboard">Extrait du storyboard <em>(2D — version IA à venir)</em></span>
+          <div class="cm-sb-strip" id="cm-sb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">

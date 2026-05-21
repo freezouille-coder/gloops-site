@@ -16,6 +16,10 @@
     "casting.title": `A <span class="text-grad-pink">top-tier</span> voice cast`,
     "casting.sub": `Target cast — to be confirmed. Iconic French voice actors envisioned to bring the Gloops to life. (Best-known dubbing roles shown for reference.)`,
     "casting.alt": `also considered`,
+    "cm.likes": `Likes`,
+    "cm.dislikes": `Dislikes`,
+    "cm.voice": `Voice · target cast`,
+    "cm.storyboard": `Storyboard <em>(2D — AI version coming)</em>`,
     "decors.eyebrow": `Art direction`,
     "decors.title": `Worlds with <span class="text-grad-gold">character</span>`,
     "decors.sub": `From the candy-dystopian factory to the bucolic farm — every set tells the Green-vs-Pink conflict.`,
@@ -417,6 +421,93 @@
       form.reset();
       setTimeout(() => { btn.textContent = original; btn.style.background = ""; btn.style.color = ""; }, 2600);
     });
+  }
+
+  /* ---------- CHARACTER FICHE MODAL ---------- */
+  const CHARS = {
+    mushmaster: { faction: "g", name: "MushMaster", voice: "Alexis Tomassian", hero: "assets/img/toys/MushMaster.jpg", sb: ["06","10"],
+      fr: { role: "Le héros masqué", desc: "L'alter ego de Po : chapeau de champignon, balai cassé, philosophie « Be water ». Maladroit mais redoutable, il devient malgré lui le visage de la résistance verte.", likes: ["« Be water »","Les poses stylées au ralenti","Protéger les Gloops"], dislikes: ["SweetLife Industries","Le SugarMaxX","L'injustice"] },
+      en: { role: "The masked hero", desc: "Po's alter ego: mushroom hat, broken broom, the 'Be water' philosophy. Clumsy yet formidable, he becomes the face of the green resistance despite himself.", likes: ["'Be water'","Slow-mo hero poses","Protecting the Gloops"], dislikes: ["SweetLife Industries","SugarMaxX","Injustice"] } },
+    po: { faction: "g", name: "Po", voice: "Alexis Tomassian", hero: "assets/img/ai/chr/Po.jpg", sb: ["02","04"],
+      fr: { role: "L'avatar du public", desc: "Balayeur-livreur de supérette, geek feignant accro à la télé et aux pubs. Amoureux transi de Lili, il enfile le champignon pour l'impressionner… et finit par y prendre goût.", likes: ["Lili","La sieste et la télé","Les conseils de Papy Mush"], dislikes: ["Son manager","Qu'on l'ignore","Son nom, « Potetoe »"] },
+      en: { role: "The everyman", desc: "Lazy store clerk and delivery boy, a TV-and-ads-addicted geek. Smitten with Lili, he dons the mushroom to impress her — and ends up enjoying it.", likes: ["Lili","Naps and TV","Papy Mush's advice"], dislikes: ["His manager","Being ignored","His name, 'Potetoe'"] } },
+    lili: { faction: "g", name: "Lili", voice: "Dorothée Pousséo", hero: "assets/img/ai/chr/Lili.jpg", sb: ["02","07"],
+      fr: { role: "La cerveau", desc: "Caissière bobo-écolo, fan de smoothies détox et de brunchs Instagrammables. Lucide et débrouillarde, c'est elle qui comprend que le jus vert est l'antidote.", likes: ["Les smoothies green détox","Le bio stylé","Avoir raison"], dislikes: ["Le SugarMaxX","Le manager lourdingue","Les plans foireux"] },
+      en: { role: "The brains", desc: "Bobo-eco cashier, fan of detox smoothies and Instagrammable brunches. Sharp and resourceful — she's the one who figures out green juice is the antidote.", likes: ["Green detox smoothies","Stylish organic","Being right"], dislikes: ["SugarMaxX","Her creepy manager","Half-baked plans"] } },
+    papymush: { faction: "g", name: "Papy Mush", voice: "Bernard Alane", hero: "assets/img/ai/chr/PapyMush.jpg", sb: ["04","05"],
+      fr: { role: "Le mentor", desc: "Fermier écolo old-school, 240 ans au compteur, sage et lent, parle par citations à la JCVD. Son thé aux champignons donne une forme olympique. Zone sans SweetLife.", likes: ["Le calme de la campagne","Le thé aux champignons","Le Retour du Jedi"], dislikes: ["La pub","Le bruit","SweetLife"] },
+      en: { role: "The mentor", desc: "Old-school eco-farmer, 240 years old, wise and slow, speaks in JCVD-style aphorisms. His mushroom tea gives Olympic energy. A SweetLife-free zone.", likes: ["The quiet countryside","Mushroom tea","Return of the Jedi"], dislikes: ["Advertising","Noise","SweetLife"] } },
+    ouss: { faction: "g", name: "Ouss & Tito", voice: "Donald Reignoux · Brigitte Lecordier (Tito)", hero: "assets/img/chr/To%20improve%20in%20AI/Healfy-Ouss_N_Titp.png", sb: ["03","05"],
+      fr: { role: "Le cœur", desc: "Ouss, opportuniste au grand cœur, élève le petit Tito (adopté) avec maladresse et tendresse. Tito, idéaliste et naïf, croit que tout le monde peut s'améliorer.", likes: ["Tito","Faire le bien (à sa façon)","La famille"], dislikes: ["Les ennuis","La police","Ses propres faiblesses"] },
+      en: { role: "The heart", desc: "Ouss, a big-hearted opportunist, raises little (adopted) Tito with clumsiness and tenderness. Tito, idealistic and naive, believes everyone can change.", likes: ["Tito","Doing good (his way)","Family"], dislikes: ["Trouble","The cops","His own weaknesses"] } },
+    sugar: { faction: "p", name: "Dr. Sugar / Shu Ga", voice: "Féodor Atkine", hero: "assets/img/toys/DemonSugar.jpg", sb: ["11","09"],
+      fr: { role: "Le grand méchant", desc: "Capitaliste pur, incarnation des dérives à la Coca-Cola. Il rend les Gloops malades pour que son frère leur vende des médicaments. Le cerveau de SweetLife Industries.", likes: ["Le profit","Le contrôle total","Les rires diaboliques"], dislikes: ["Les légumes","La résistance","Perdre de l'argent"] },
+      en: { role: "The big bad", desc: "Pure capitalist, the embodiment of Coca-Cola-style excess. He makes the Gloops sick so his brother can sell them medicine. The mastermind of SweetLife Industries.", likes: ["Profit","Total control","Evil cackles"], dislikes: ["Vegetables","The resistance","Losing money"] } },
+    kevin: { faction: "p", name: "Kevin V", voice: "Christophe Lemoine", hero: "assets/img/ai/chr/King_N_ZogZog.jpg", sb: ["01","09"],
+      fr: { role: "Le roi-pantin", desc: "Jeune, ignorant, manipulable. Il se fout du peuple, adore l'argent, le pouvoir et surtout MANGER. Le pantin parfait pour Shu Ga.", likes: ["Les donuts","La Game Boy","Interdire les légumes"], dislikes: ["L'eau « des chiottes »","Perdre à Mario Kart","Qu'on le dérange"] },
+      en: { role: "The puppet king", desc: "Young, ignorant, easily manipulated. He couldn't care less about his people; he loves money, power and above all EATING. The perfect puppet for Shu Ga.", likes: ["Donuts","His Game Boy","Banning vegetables"], dislikes: ["'Toilet' water","Losing at Mario Kart","Being disturbed"] } },
+    manager: { faction: "p", name: "Le Manager", voice: "Philippe Peythieu", hero: "assets/img/ai/chr/Manager.jpg", sb: ["10","03"],
+      fr: { role: "Le petit chef", desc: "Manager de la supérette : méchant, esclavagiste, machiste et dégueu… mais peut-être un cœur quelque part. Carbure au SugarMaxX et à la clope.", likes: ["Le SugarMaxX","Donner des ordres","Son poster « Best Boss »"], dislikes: ["Po","Les smoothies","Travailler (lui)"] },
+      en: { role: "The petty tyrant", desc: "Convenience-store manager: nasty, slave-driving, sexist and gross… but maybe a heart somewhere. Runs on SugarMaxX and cigarettes.", likes: ["SugarMaxX","Bossing people around","His 'Best Boss' poster"], dislikes: ["Po","Smoothies","Doing his own work"] } },
+    sugarhead: { faction: "p", name: "SugarHead", voice: "—", hero: "assets/img/toys/SugarHead.jpg", sb: ["03","08"],
+      fr: { role: "La menace de masse", desc: "Ce que deviennent les Gloops gavés de SugarMaxX : yeux vitreux, rage sucrée, rots enflammés. L'armée involontaire de l'Empire.", likes: ["Le SugarMaxX","Mordre","Foncer dans le tas"], dislikes: ["Le jus vert","Reprendre ses esprits","Les légumes"] },
+      en: { role: "The mass threat", desc: "What Gloops become once stuffed with SugarMaxX: glassy eyes, sugary rage, flaming burps. The Empire's involuntary army.", likes: ["SugarMaxX","Biting","Charging the crowd"], dislikes: ["Green juice","Snapping out of it","Vegetables"] } },
+    mito: { faction: "p", name: "Mito", voice: "Eric Métayer", hero: "assets/img/chr/To%20improve%20in%20AI/Scientific-Mito.png", sb: ["11","09"],
+      fr: { role: "Le bras droit", desc: "Conseiller scientifique de Demon Sugar, pitchman de plans absurdes et très sournois. La morale ? À quoi ça sert ? Il fabrique des légumes artificiels.", likes: ["La science sans éthique","Plaire à son maître","Les inventions absurdes"], dislikes: ["Le vrai bio","Échouer","Les questions gênantes"] },
+      en: { role: "The right hand", desc: "Demon Sugar's science advisor, pitchman of absurd schemes and very sneaky. Morals? What for? He manufactures artificial vegetables.", likes: ["Ethics-free science","Pleasing his master","Absurd inventions"], dislikes: ["Real organic","Failing","Awkward questions"] } },
+    zogzog: { faction: "p", name: "Les ZogZogs", voice: "Christophe Lemoine · Emmanuel Curtil", hero: "assets/img/ai/chr/ZogZog.jpg", sb: ["09","10"],
+      fr: { role: "La police du sucre", desc: "La police-armée du roi, à la botte de Shu Ga. Idiots mais obéissants (Brutus, Zak, Joe, Gogol…). Lancés aux trousses du dangereux champignon.", likes: ["Le popcorn","Obéir","Le pouvoir"], dislikes: ["Réfléchir","MushMaster","Les légumes verts"] },
+      en: { role: "The sugar police", desc: "The king's police-army, at Shu Ga's command. Idiots but obedient (Brutus, Zak, Joe, Gogol…). On the hunt for the dangerous mushroom.", likes: ["Popcorn","Following orders","Power"], dislikes: ["Thinking","MushMaster","Green vegetables"] } }
+  };
+  const SRCMAP = { "MushMaster.jpg":"mushmaster", "Po.jpg":"po", "Lili.jpg":"lili", "PapyMush.jpg":"papymush", "Healfy-Ouss_N_Titp.png":"ouss", "DemonSugar.jpg":"sugar", "King_N_ZogZog.jpg":"kevin", "Manager.jpg":"manager", "SugarHead.jpg":"sugarhead", "Scientific-Mito.png":"mito", "ZogZog.jpg":"zogzog" };
+
+  const cmodal = $("#char-modal");
+  if (cmodal) {
+    const cmHero = $("#cm-hero-img"), cmRole = $("#cm-role"), cmName = $("#cm-name"),
+          cmDesc = $("#cm-desc"), cmLikes = $("#cm-likes"), cmDislikes = $("#cm-dislikes"),
+          cmVoice = $("#cm-voice"), cmSb = $("#cm-sb"), cmPanel = $("#cm-panel");
+    let openId = null;
+
+    const render = (id) => {
+      const c = CHARS[id]; if (!c) return;
+      const L = currentLang === "en" ? "en" : "fr";
+      cmHero.src = c.hero; cmHero.alt = c.name;
+      cmRole.textContent = c[L].role; cmRole.className = "cm-role " + c.faction;
+      cmName.textContent = c.name;
+      cmDesc.textContent = c[L].desc;
+      cmLikes.innerHTML = c[L].likes.map((x) => "<li>" + x + "</li>").join("");
+      cmDislikes.innerHTML = c[L].dislikes.map((x) => "<li>" + x + "</li>").join("");
+      cmVoice.textContent = c.voice;
+      cmSb.innerHTML = c.sb.map((n) => '<img src="assets/img/keyframes/DRAW/' + n + '.png" alt="" loading="lazy">').join("");
+      cmPanel.className = "cm-panel " + c.faction;
+    };
+    const openChar = (id) => {
+      if (!CHARS[id]) return;
+      openId = id; render(id);
+      cmodal.classList.add("open"); cmodal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+    };
+    const closeChar = () => {
+      cmodal.classList.remove("open"); cmodal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll"); openId = null;
+    };
+
+    $$(".char-card").forEach((card) => {
+      card.setAttribute("role", "button"); card.setAttribute("tabindex", "0");
+      const go = () => {
+        const img = card.querySelector(".char-img"); if (!img) return;
+        const key = decodeURIComponent(img.getAttribute("src")).split("/").pop();
+        const id = SRCMAP[key]; if (id) openChar(id);
+      };
+      card.addEventListener("click", go);
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } });
+    });
+    $("#cm-close").addEventListener("click", closeChar);
+    cmodal.addEventListener("click", (e) => { if (e.target === cmodal) closeChar(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape" && cmodal.classList.contains("open")) closeChar(); });
+    // re-render on language toggle while open
+    const ls = $("#lang-switch");
+    ls && ls.addEventListener("click", () => { if (openId) setTimeout(() => render(openId), 0); });
   }
 
   /* ---------- HERO PARALLAX (light) ---------- */
