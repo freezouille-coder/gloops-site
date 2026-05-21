@@ -13,7 +13,7 @@
     "nav.conflit": `The Conflict`, "nav.chars": `Characters`, "nav.story": `The Story`,
     "nav.videos": `Videos`, "nav.eco": `The Ecosystem`, "nav.invest": `Invest`, "nav.decors": `Sets`, "nav.casting": `Cast`,
     "casting.eyebrow": `The voices`,
-    "casting.title": `A <span class="text-grad-pink">top-tier</span> voice cast`,
+    "casting.title": `A top-tier<br><span class="text-grad-pink">voice cast</span>`,
     "casting.sub": `Target cast — to be confirmed. Iconic French voice actors envisioned to bring the Gloops to life. (Best-known dubbing roles shown for reference.)`,
     "casting.alt": `also considered`,
     "cm.likes": `Likes`,
@@ -315,24 +315,65 @@
     });
   });
 
-  /* ---------- STORY SCROLLER ---------- */
+  /* ---------- CASTING: iconic-character badges ---------- */
+  const ACTOR_ICON = {
+    "Alexis Tomassian": ["fry.jpeg", "Fry (Futurama)"],
+    "Dorothée Pousséo": ["Vanellope.jpeg", "Vanellope"],
+    "Bernard Alane": ["Bernard Alane.jpg", "Aladdin"],
+    "Christophe Lemoine": ["Cartman.jpeg", "Eric Cartman"],
+    "Philippe Peythieu": ["Homer.png", "Homer Simpson"],
+    "Féodor Atkine": ["Jafar.jpeg", "Jafar"],
+    "Donald Reignoux": ["Titeuf.jpeg", "Titeuf"],
+    "Brigitte Lecordier": ["sangoku.jpeg", "Son Goku"],
+    "Eric Métayer": ["Iago.jpeg", "Iago"]
+  };
+  $$(".cast-card").forEach((card) => {
+    const av = card.querySelector(".cast-avatar");
+    const nameEl = card.querySelector(".cast-actor");
+    if (!av || !nameEl) return;
+    const info = ACTOR_ICON[nameEl.textContent.trim()];
+    if (!info) return;
+    const wrap = document.createElement("div");
+    wrap.className = "cast-portrait";
+    av.parentNode.insertBefore(wrap, av);
+    wrap.appendChild(av);
+    const ic = document.createElement("img");
+    ic.className = "cast-icon";
+    ic.src = "assets/img/actors/chr/" + encodeURIComponent(info[0]);
+    ic.alt = info[1]; ic.title = "Voix de " + info[1]; ic.loading = "lazy";
+    wrap.appendChild(ic);
+  });
+
+  /* ---------- STORY: pinned horizontal scroll ---------- */
+  const story = $("#histoire");
+  const track = $("#scenes-track");
   const scenes = $("#scenes");
   const bar = $("#story-bar");
-  if (scenes && bar) {
+  if (story && track) {
+    const isMobile = () => window.innerWidth <= 860 || reduceMotion;
+    let dist = 0;
     const update = () => {
-      const max = scenes.scrollWidth - scenes.clientWidth;
-      bar.style.width = (max > 0 ? (scenes.scrollLeft / max) * 100 : 0) + "%";
+      if (isMobile()) return;
+      const max = story.offsetHeight - window.innerHeight;
+      const prog = Math.min(1, Math.max(0, -story.getBoundingClientRect().top / (max || 1)));
+      track.style.transform = "translateX(" + (-dist * prog) + "px)";
+      if (bar) bar.style.width = (prog * 100) + "%";
     };
-    scenes.addEventListener("scroll", update, { passive: true });
-    update();
-    // drag to scroll (desktop)
-    let down = false, sx = 0, sl = 0;
-    scenes.addEventListener("mousedown", (e) => { down = true; sx = e.pageX; sl = scenes.scrollLeft; });
-    window.addEventListener("mouseup", () => { down = false; });
-    scenes.addEventListener("mousemove", (e) => { if (down) { e.preventDefault(); scenes.scrollLeft = sl - (e.pageX - sx); } });
-    // wheel -> horizontal
-    scenes.addEventListener("wheel", (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { scenes.scrollLeft += e.deltaY; }
+    const layout = () => {
+      if (isMobile()) { story.style.height = ""; track.style.transform = ""; return; }
+      dist = Math.max(0, track.scrollWidth - window.innerWidth);
+      story.style.height = (window.innerHeight + dist) + "px";
+      update();
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", layout);
+    window.addEventListener("load", layout);
+    layout();
+    // mobile fallback: progress bar from native horizontal scroll
+    scenes && scenes.addEventListener("scroll", () => {
+      if (!isMobile() || !bar) return;
+      const m = scenes.scrollWidth - scenes.clientWidth;
+      bar.style.width = (m > 0 ? (scenes.scrollLeft / m) * 100 : 0) + "%";
     }, { passive: true });
   }
 

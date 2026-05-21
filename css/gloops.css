@@ -79,7 +79,7 @@ h1,h2,h3 { font-family: "Fredoka", sans-serif; font-weight: 600; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
 
-.section { position: relative; padding: clamp(80px, 11vw, 160px) 0; }
+.section { position: relative; padding: clamp(48px, 5.5vw, 92px) 0; }
 
 .eyebrow {
   display: inline-flex; align-items: center; gap: 10px;
@@ -363,7 +363,11 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .cast-card:hover { transform: translateY(-5px); background: rgba(255,255,255,.05); }
 .cast-card.g:hover { border-color: rgba(140,226,63,.4); box-shadow: var(--shadow-green); }
 .cast-card.p:hover { border-color: rgba(255,63,164,.4); box-shadow: var(--shadow-pink); }
-.cast-avatar { flex: 0 0 auto; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.3rem; color: #fff; letter-spacing: .02em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+.cast-portrait { flex: 0 0 auto; position: relative; }
+.cast-avatar { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.6rem; color: #fff; letter-spacing: .02em; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); }
+.cast-icon { position: absolute; bottom: -4px; right: -8px; width: 42px; height: 42px; border-radius: 50%; object-fit: cover; background: var(--bg-3); border: 2.5px solid var(--bg-2); box-shadow: 0 4px 12px rgba(0,0,0,.5); }
+.cast-card.g .cast-icon { outline: 1px solid rgba(140,226,63,.5); }
+.cast-card.p .cast-icon { outline: 1px solid rgba(255,63,164,.5); }
 .cast-card.g .cast-avatar { background: linear-gradient(135deg, #aef06a, var(--green-deep)); color: #16280a; }
 .cast-card.p .cast-avatar { background: linear-gradient(135deg, var(--pink-soft), var(--pink)); }
 .cast-avatar { overflow: hidden; }
@@ -401,19 +405,18 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 /* =================================================================
    STORY / PILOTE — horizontal scene scroller
    ================================================================= */
-.story { background: var(--bg); }
+.story { background: var(--bg); position: relative; }
+.story-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: clamp(46px,8vh,96px) 0 clamp(28px,5vh,56px); }
 .story-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
 .story-progress { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 13px; }
 .story-progress-track { width: 120px; height: 4px; background: rgba(255,255,255,.1); border-radius: 100px; overflow: hidden; }
 .story-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg,var(--green),var(--pink)); border-radius: 100px; }
 
-.scenes {
-  display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding: 46px 28px 30px; margin: 0 -28px; scrollbar-width: none;
-}
+.scenes { flex: 1 1 auto; display: flex; align-items: center; overflow: hidden; min-height: 0; margin-top: clamp(16px,3vh,34px); scrollbar-width: none; }
 .scenes::-webkit-scrollbar { display: none; }
+.scenes-track { display: flex; gap: 22px; padding: 0 6vw; will-change: transform; }
 .scene {
-  flex: 0 0 clamp(280px, 80vw, 440px); scroll-snap-align: center;
+  flex: 0 0 clamp(280px, 36vw, 420px); scroll-snap-align: center;
   border-radius: var(--radius); overflow: hidden; background: var(--panel); border: 1px solid var(--line);
   transition: border-color .3s, box-shadow .3s;
 }
@@ -424,6 +427,12 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .scene-title { font-family:"Fredoka"; font-weight: 600; font-size: 1.3rem; margin: 4px 0 8px; }
 .scene-text { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
 .scene-drag-hint { color: var(--muted-2); font-size: 13px; margin-top: 6px; }
+@media (max-width: 860px) {
+  .story-sticky { position: static; height: auto; padding: clamp(48px,9vw,80px) 0; }
+  .scenes { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+  .scenes-track { padding: 0 24px; }
+  .scene { flex: 0 0 clamp(260px, 82vw, 360px); }
+}
 
 /* =================================================================
    VIDEOS
