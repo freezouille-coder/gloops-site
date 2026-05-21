@@ -46,6 +46,8 @@
     "char.sugar.desc": `The mastermind of SweetLife Industries. An icy voice behind a wall of screens. His plan: replace the water, the veggies… and freedom.`,
     "char.kevin.role": `The puppet king`,
     "char.kevin.desc": `A childish monarch hooked on his Game Boy and donuts, manipulated by Shu Ga. He hates “toilet water” and loves banning vegetables.`,
+    "char.manager.role": `The tyrant boss`,
+    "char.manager.desc": `Po's abusive boss. Cigarette in mouth, SugarMaxX in hand, he lords over his store… until one sip too many turns him into a monster.`,
     "char.sugarhead.role": `The mass threat`,
     "char.sugarhead.desc": `What Gloops become once stuffed with SugarMaxX: glazed eyes, sugary rage, flaming burps. The Empire's involuntary army.`,
     "char.mito.role": `The right hand`,
