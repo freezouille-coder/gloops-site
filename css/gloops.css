@@ -596,6 +596,31 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 }
 
 /* =================================================================
+   DÉCOR GALLERY MODAL
+   ================================================================= */
+.decor-modal { position: fixed; inset: 0; z-index: 9600; display: flex; align-items: center; justify-content: center; padding: 4vw; background: rgba(6,3,10,.92); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.decor-modal.open { opacity: 1; visibility: visible; }
+.dm-panel { position: relative; max-width: min(1100px, 94vw); margin: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line-strong); box-shadow: 0 40px 100px rgba(0,0,0,.7); transform: scale(.97); transition: transform .45s var(--ease-out); }
+.decor-modal.open .dm-panel { transform: none; }
+.dm-panel.g { border-color: rgba(140,226,63,.5); }
+.dm-panel.p { border-color: rgba(255,63,164,.5); }
+.dm-panel img { display: block; width: 100%; max-height: 78vh; object-fit: contain; background: #000; }
+.dm-panel figcaption { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; padding: 20px 24px; background: linear-gradient(180deg, rgba(12,7,18,.4), rgba(12,7,18,.95)); position: absolute; left: 0; right: 0; bottom: 0; }
+.dm-name { display: block; font-family: "Fredoka", sans-serif; font-weight: 700; font-size: clamp(1.2rem,2.4vw,1.7rem); }
+.dm-panel.g .dm-name { color: #d4ff9e; } .dm-panel.p .dm-name { color: #ffd1ec; }
+.dm-desc { display: block; color: var(--muted); font-size: 14px; margin-top: 4px; max-width: 70ch; }
+.dm-count { flex: 0 0 auto; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 13px; color: var(--muted-2); }
+.dm-close { position: absolute; top: 24px; right: 28px; z-index: 2; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
+.dm-close:hover { background: rgba(255,63,164,.4); transform: rotate(90deg); }
+.dm-close svg { width: 24px; height: 24px; }
+.dm-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
+.dm-nav:hover { background: rgba(255,255,255,.22); }
+.dm-prev { left: 3vw; } .dm-next { right: 3vw; }
+.dm-prev:hover { transform: translateY(-50%) translateX(-3px); } .dm-next:hover { transform: translateY(-50%) translateX(3px); }
+.dm-nav svg { width: 26px; height: 26px; }
+@media (max-width: 760px){ .dm-prev { left: 8px; } .dm-next { right: 8px; } .dm-nav { width: 46px; height: 46px; } .dm-panel figcaption { flex-direction: column; align-items: flex-start; gap: 6px; } }
+
+/* =================================================================
    MUSIC TOGGLE
    ================================================================= */
 .music-toggle { position: fixed; bottom: 26px; left: 26px; z-index: 880; display: flex; align-items: center; gap: 12px; padding: 10px 16px 10px 12px; border-radius: 100px; background: rgba(12,7,18,.7); border: 1px solid var(--line-strong); backdrop-filter: blur(10px); transition: transform .3s var(--ease), border-color .3s; }

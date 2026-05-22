@@ -140,7 +140,7 @@
       <!-- Résistance -->
       <div class="char-grid" id="grid-green">
         <article class="char-card g reveal">
-          <img src="assets/img/toys/MushMaster.jpg" alt="MushMaster" class="char-img">
+          <img src="assets/img/ai/chr_v2/MushMaster.jpg" alt="MushMaster" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.mush.role">Le héros masqué</span>
@@ -158,7 +158,7 @@
           </div>
         </article>
         <article class="char-card g reveal d2">
-          <img src="assets/img/ai/chr/Lili.jpg" alt="Lili" class="char-img">
+          <img src="assets/img/ai/chr_v2/Lili.jpg" alt="Lili" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.lili.role">La cerveau</span>
@@ -207,7 +207,7 @@
           </div>
         </article>
         <article class="char-card p reveal d2">
-          <img src="assets/img/ai/chr/Manager.jpg" alt="Le Manager" class="char-img">
+          <img src="assets/img/ai/chr_v2/Manager.jpg" alt="Le Manager" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.manager.role">Le petit chef</span>
@@ -216,7 +216,7 @@
           </div>
         </article>
         <article class="char-card p reveal d2">
-          <img src="assets/img/toys/SugarHead.jpg" alt="SugarHead" class="char-img">
+          <img src="assets/img/ai/chr_v2/SugarHead.jpg" alt="SugarHead" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.sugarhead.role">La menace de masse</span>
@@ -613,6 +613,20 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- ===== DÉCOR MODAL (gallery) ===== -->
+  <div class="decor-modal" id="decor-modal" aria-hidden="true">
+    <button class="dm-close" id="dm-close" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="dm-nav dm-prev" id="dm-prev" aria-label="Précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button>
+    <button class="dm-nav dm-next" id="dm-next" aria-label="Suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button>
+    <figure class="dm-panel" id="dm-panel">
+      <img id="dm-img" alt="">
+      <figcaption>
+        <div><span class="dm-name" id="dm-name"></span><span class="dm-desc" id="dm-desc"></span></div>
+        <span class="dm-count" id="dm-count"></span>
+      </figcaption>
+    </figure>
   </div>
 
   <!-- ===== LIGHTBOX ===== -->

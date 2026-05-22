@@ -408,6 +408,46 @@
   lb && lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
 
+  /* ---------- DÉCOR GALLERY MODAL ---------- */
+  const dmodal = $("#decor-modal");
+  if (dmodal) {
+    const cards = $$(".decor-card");
+    const data = cards.map((c) => ({
+      src: c.querySelector("img").getAttribute("src"),
+      name: (c.querySelector(".decor-name") || {}).textContent || "",
+      desc: (c.querySelector(".decor-desc") || {}).textContent || "",
+      faction: c.classList.contains("g") ? "g" : (c.classList.contains("p") ? "p" : "")
+    }));
+    const dmImg = $("#dm-img"), dmName = $("#dm-name"), dmDesc = $("#dm-desc"),
+          dmCount = $("#dm-count"), dmPanel = $("#dm-panel");
+    let idx = 0;
+    const render = () => {
+      const d = data[idx];
+      dmImg.src = d.src; dmImg.alt = d.name;
+      dmName.textContent = d.name; dmDesc.textContent = d.desc;
+      dmCount.textContent = (idx + 1) + " / " + data.length;
+      dmPanel.className = "dm-panel " + d.faction;
+    };
+    const open = (i) => { idx = i; render(); dmodal.classList.add("open"); dmodal.setAttribute("aria-hidden", "false"); document.body.classList.add("no-scroll"); };
+    const close = () => { dmodal.classList.remove("open"); dmodal.setAttribute("aria-hidden", "true"); document.body.classList.remove("no-scroll"); };
+    const go = (step) => { idx = (idx + step + data.length) % data.length; render(); };
+    cards.forEach((c, i) => {
+      c.style.cursor = "pointer"; c.setAttribute("role", "button"); c.setAttribute("tabindex", "0");
+      c.addEventListener("click", () => open(i));
+      c.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); } });
+    });
+    $("#dm-close").addEventListener("click", close);
+    $("#dm-prev").addEventListener("click", () => go(-1));
+    $("#dm-next").addEventListener("click", () => go(1));
+    dmodal.addEventListener("click", (e) => { if (e.target === dmodal) close(); });
+    window.addEventListener("keydown", (e) => {
+      if (!dmodal.classList.contains("open")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") go(-1);
+      else if (e.key === "ArrowRight") go(1);
+    });
+  }
+
   /* ---------- STAT COUNTERS ---------- */
   const stats = $$(".stat-num[data-count]");
   if (stats.length) {
@@ -466,13 +506,13 @@
 
   /* ---------- CHARACTER FICHE MODAL ---------- */
   const CHARS = {
-    mushmaster: { faction: "g", name: "MushMaster", voice: "Alexis Tomassian", hero: "assets/img/toys/MushMaster.jpg", sb: ["06","10"],
+    mushmaster: { faction: "g", name: "MushMaster", voice: "Alexis Tomassian", hero: "assets/img/ai/chr_v2/MushMaster.jpg", sb: ["06","10"],
       fr: { role: "Le héros masqué", desc: "L'alter ego de Po : chapeau de champignon, balai cassé, philosophie « Be water ». Maladroit mais redoutable, il devient malgré lui le visage de la résistance verte.", likes: ["« Be water »","Les poses stylées au ralenti","Protéger les Gloops"], dislikes: ["SweetLife Industries","Le SugarMaxX","L'injustice"] },
       en: { role: "The masked hero", desc: "Po's alter ego: mushroom hat, broken broom, the 'Be water' philosophy. Clumsy yet formidable, he becomes the face of the green resistance despite himself.", likes: ["'Be water'","Slow-mo hero poses","Protecting the Gloops"], dislikes: ["SweetLife Industries","SugarMaxX","Injustice"] } },
     po: { faction: "g", name: "Po", voice: "Alexis Tomassian", hero: "assets/img/ai/chr/Po.jpg", sb: ["02","04"],
       fr: { role: "L'avatar du public", desc: "Balayeur-livreur de supérette, geek feignant accro à la télé et aux pubs. Amoureux transi de Lili, il enfile le champignon pour l'impressionner… et finit par y prendre goût.", likes: ["Lili","La sieste et la télé","Les conseils de Papy Mush"], dislikes: ["Son manager","Qu'on l'ignore","Son nom, « Potetoe »"] },
       en: { role: "The everyman", desc: "Lazy store clerk and delivery boy, a TV-and-ads-addicted geek. Smitten with Lili, he dons the mushroom to impress her — and ends up enjoying it.", likes: ["Lili","Naps and TV","Papy Mush's advice"], dislikes: ["His manager","Being ignored","His name, 'Potetoe'"] } },
-    lili: { faction: "g", name: "Lili", voice: "Dorothée Pousséo", hero: "assets/img/ai/chr/Lili.jpg", sb: ["02","07"],
+    lili: { faction: "g", name: "Lili", voice: "Dorothée Pousséo", hero: "assets/img/ai/chr_v2/Lili.jpg", sb: ["02","07"],
       fr: { role: "La cerveau", desc: "Caissière bobo-écolo, fan de smoothies détox et de brunchs Instagrammables. Lucide et débrouillarde, c'est elle qui comprend que le jus vert est l'antidote.", likes: ["Les smoothies green détox","Le bio stylé","Avoir raison"], dislikes: ["Le SugarMaxX","Le manager lourdingue","Les plans foireux"] },
       en: { role: "The brains", desc: "Bobo-eco cashier, fan of detox smoothies and Instagrammable brunches. Sharp and resourceful — she's the one who figures out green juice is the antidote.", likes: ["Green detox smoothies","Stylish organic","Being right"], dislikes: ["SugarMaxX","Her creepy manager","Half-baked plans"] } },
     papymush: { faction: "g", name: "Papy Mush", voice: "Bernard Alane", hero: "assets/img/ai/chr/PapyMush.jpg", sb: ["04","05"],
@@ -487,10 +527,10 @@
     kevin: { faction: "p", name: "Kevin V", voice: "Christophe Lemoine", hero: "assets/img/ai/chr_v2/King.jpg", sb: ["01","09"],
       fr: { role: "Le roi-pantin", desc: "Jeune, ignorant, manipulable. Il se fout du peuple, adore l'argent, le pouvoir et surtout MANGER. Le pantin parfait pour Shu Ga.", likes: ["Les donuts","La Game Boy","Interdire les légumes"], dislikes: ["L'eau « des chiottes »","Perdre à Mario Kart","Qu'on le dérange"] },
       en: { role: "The puppet king", desc: "Young, ignorant, easily manipulated. He couldn't care less about his people; he loves money, power and above all EATING. The perfect puppet for Shu Ga.", likes: ["Donuts","His Game Boy","Banning vegetables"], dislikes: ["'Toilet' water","Losing at Mario Kart","Being disturbed"] } },
-    manager: { faction: "p", name: "Le Manager", voice: "Philippe Peythieu", hero: "assets/img/ai/chr/Manager.jpg", sb: ["10","03"],
+    manager: { faction: "p", name: "Le Manager", voice: "Philippe Peythieu", hero: "assets/img/ai/chr_v2/Manager.jpg", sb: ["10","03"],
       fr: { role: "Le petit chef", desc: "Manager de la supérette : méchant, esclavagiste, machiste et dégueu… mais peut-être un cœur quelque part. Carbure au SugarMaxX et à la clope.", likes: ["Le SugarMaxX","Donner des ordres","Son poster « Best Boss »"], dislikes: ["Po","Les smoothies","Travailler (lui)"] },
       en: { role: "The petty tyrant", desc: "Convenience-store manager: nasty, slave-driving, sexist and gross… but maybe a heart somewhere. Runs on SugarMaxX and cigarettes.", likes: ["SugarMaxX","Bossing people around","His 'Best Boss' poster"], dislikes: ["Po","Smoothies","Doing his own work"] } },
-    sugarhead: { faction: "p", name: "SugarHead", voice: "—", hero: "assets/img/toys/SugarHead.jpg", sb: ["03","08"],
+    sugarhead: { faction: "p", name: "SugarHead", voice: "—", hero: "assets/img/ai/chr_v2/SugarHead.jpg", sb: ["03","08"],
       fr: { role: "La menace de masse", desc: "Ce que deviennent les Gloops gavés de SugarMaxX : yeux vitreux, rage sucrée, rots enflammés. L'armée involontaire de l'Empire.", likes: ["Le SugarMaxX","Mordre","Foncer dans le tas"], dislikes: ["Le jus vert","Reprendre ses esprits","Les légumes"] },
       en: { role: "The mass threat", desc: "What Gloops become once stuffed with SugarMaxX: glassy eyes, sugary rage, flaming burps. The Empire's involuntary army.", likes: ["SugarMaxX","Biting","Charging the crowd"], dislikes: ["Green juice","Snapping out of it","Vegetables"] } },
     mito: { faction: "p", name: "Mito", voice: "Eric Métayer", hero: "assets/img/ai/chr_v2/Mito.jpg", sb: ["11","09"],
