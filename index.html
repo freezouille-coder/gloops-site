@@ -131,9 +131,9 @@
         <span class="eyebrow" data-i18n="chars.eyebrow">Le casting</span>
         <h2 class="section-title" data-i18n="chars.title">Des héros attachants,<br>des méchants délicieux</h2>
         <p class="section-sub" data-i18n="chars.sub">Un casting taillé pour le merchandising et les réseaux : chaque Gloop a sa silhouette, sa couleur, son meme.</p>
-        <div class="faction-tabs reveal d1">
-          <button class="faction-tab green active" data-faction="green" data-i18n="chars.tab.green">La Résistance</button>
-          <button class="faction-tab pink" data-faction="pink" data-i18n="chars.tab.pink">L'Empire</button>
+        <div class="faction-legend reveal d1">
+          <span class="leg g"><i></i><span data-i18n="chars.tab.green">La Résistance</span></span>
+          <span class="leg p"><i></i><span data-i18n="chars.tab.pink">L'Empire</span></span>
         </div>
       </div>
 
@@ -149,7 +149,7 @@
           </div>
         </article>
         <article class="char-card g reveal d1">
-          <img src="assets/img/ai/chr/Po.jpg" alt="Po" class="char-img">
+          <img src="assets/img/ai/chr_v2/Po.jpg" alt="Po" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.po.role">L'avatar du public</span>
@@ -184,10 +184,15 @@
             <p class="char-desc" data-i18n="char.ouss.desc">Le duo père-fils que tout le monde veut protéger. « Orwar madame ! » Les premiers à fuir la folie rose.</p>
           </div>
         </article>
-      </div>
-
-      <!-- Empire -->
-      <div class="char-grid hidden" id="grid-pink">
+        <article class="char-card g reveal">
+          <img src="assets/img/ai/chr_v2/Eka.jpg" alt="Eka" class="char-img">
+          <div class="char-shade"></div>
+          <div class="char-meta">
+            <span class="char-role" data-i18n="char.eka.role">La transfuge</span>
+            <h3 class="char-name">Eka</h3>
+            <p class="char-desc" data-i18n="char.eka.desc">D'abord ZogZog au service du roi, elle bascule du côté de la Résistance quand elle comprend qu'elle servait le mauvais camp.</p>
+          </div>
+        </article>
         <article class="char-card p reveal">
           <img src="assets/img/ai/chr_v2/DemonSugar.jpg" alt="Dr. Sugar" class="char-img">
           <div class="char-shade"></div>
@@ -234,7 +239,7 @@
           </div>
         </article>
         <article class="char-card p reveal d4">
-          <img src="assets/img/ai/chr/ZogZog.jpg" alt="Les ZogZogs" class="char-img">
+          <img src="assets/img/ai/chr_v2/ZogZog.jpg" alt="Les ZogZogs" class="char-img">
           <div class="char-shade"></div>
           <div class="char-meta">
             <span class="char-role" data-i18n="char.zog.role">La police du sucre</span>
@@ -387,21 +392,13 @@
   </section>
 
   <!-- ===== HISTOIRE / PILOTE ===== -->
-  <section class="story" id="histoire">
-    <div class="story-sticky">
+  <section class="section story" id="histoire">
     <div class="container">
-      <div class="story-head">
-        <div>
-          <span class="eyebrow green" data-i18n="story.eyebrow">Pilote · Saison 1, Épisode 1</span>
-          <h2 class="section-title" data-i18n="story.title">« L'eau c'est la vie »</h2>
-        </div>
-        <div class="story-progress">
-          <span data-i18n="story.scroll">Faites défiler</span>
-          <div class="story-progress-track"><div class="story-progress-bar" id="story-bar"></div></div>
-        </div>
+      <div class="duality-head reveal">
+        <span class="eyebrow green" data-i18n="story.eyebrow">Pilote · Saison 1, Épisode 1</span>
+        <h2 class="section-title" data-i18n="story.title">« L'eau c'est la vie »</h2>
       </div>
-    </div>
-    <div class="scenes" id="scenes"><div class="scenes-track" id="scenes-track">
+      <div class="scenes-grid" id="scenes">
       <div class="scene reveal"><img src="assets/img/keyframes/DRAW/01.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num">COLD OPEN</span><h3 class="scene-title" data-i18n="scene.1.t">La Fontaine du Bien-Être</h3><p class="scene-text" data-i18n="scene.1.x">Le Roi inaugure une fontaine offerte par SweetLife. L'eau vire au rose fluo, la foule se rue. Un journal sponsorisé, un jingle obsédant : l'emprise commence.</p></div></div>
       <div class="scene reveal d1"><img src="assets/img/keyframes/AI/02.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num" data-i18n="scene.2.n">01 · ZONE DE CONFORT</span><h3 class="scene-title" data-i18n="scene.2.t">La supérette</h3><p class="scene-text" data-i18n="scene.2.x">Po range des canettes en matant Lili. Premier crush maladroit, premier « smoothie détox » incompris. La radio crache de la pub SugarMaxX en boucle.</p></div></div>
       <div class="scene reveal d2"><img src="assets/img/keyframes/DRAW/03.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num" data-i18n="scene.3.n">02-03 · DÉCLENCHEUR</span><h3 class="scene-title" data-i18n="scene.3.t">La ville devient bizarre</h3><p class="scene-text" data-i18n="scene.3.x">Le manager tyrannise Po. Dehors, les clients aux yeux vitreux pètent les plombs, canette rose à la main. Quelque chose ne tourne pas rond.</p></div></div>
@@ -413,7 +410,6 @@
       <div class="scene reveal d2"><img src="assets/img/keyframes/DRAW/09.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num" data-i18n="scene.9.n">09 · CONSÉQUENCES</span><h3 class="scene-title" data-i18n="scene.9.t">Le palais &amp; Shu Ga</h3><p class="scene-text" data-i18n="scene.9.x">Au palais, Kevin V perd à Mario Kart. Shu Ga surgit sur les écrans : « Le pipeline est détruit. » Une prime sur la tête du champignon. Les légumes, interdits.</p></div></div>
       <div class="scene reveal"><img src="assets/img/keyframes/DRAW/10.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num" data-i18n="scene.10.n">10 · RETOUR BOUTIQUE</span><h3 class="scene-title" data-i18n="scene.10.t">WANTED : MushMaster</h3><p class="scene-text" data-i18n="scene.10.x">Frigo à légumes scellé, distributeur SugarMaxX flambant neuf, avis de recherche à l'entrée. Po sourit : « Be water… Mush… MushMASTER ! »</p></div></div>
       <div class="scene reveal d1"><img src="assets/img/keyframes/DRAW/11.png" alt="" class="scene-img" loading="lazy"><div class="scene-body"><span class="scene-num" data-i18n="scene.11.n">11 · ÉPILOGUE</span><h3 class="scene-title" data-i18n="scene.11.t">Le rire de Dr. Sugar</h3><p class="scene-text" data-i18n="scene.11.x">Dans son labo, Mito présente un légume artificiel. Le logo SweetLife pulse. Dr. Sugar sourit… puis éclate d'un rire diabolique. À suivre.</p></div></div>
-    </div>
     </div>
     </div>
   </section>

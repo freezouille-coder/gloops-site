@@ -328,6 +328,14 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .faction-tab.pink::before  { background-image: url("../assets/img/ai/emblem_sweetlife.png"); }
 .faction-tab.active.green { background: linear-gradient(100deg,#aef06a,var(--green)); color: #16280a; }
 .faction-tab.active.pink  { background: linear-gradient(100deg,var(--pink-soft),var(--pink)); color: #fff; }
+.faction-legend { display: inline-flex; gap: 24px; margin: 26px auto 0; align-items: center; }
+.leg { display: inline-flex; align-items: center; gap: 9px; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 14px; color: var(--muted); }
+.leg i { width: 13px; height: 13px; border-radius: 50%; }
+.leg.g i { background: var(--green); box-shadow: 0 0 12px var(--green); }
+.leg.p i { background: var(--pink); box-shadow: 0 0 12px var(--pink); }
+/* persistent faction glow — characters are differentiated by glow color, not by tabs */
+.char-grid .char-card.g { box-shadow: 0 0 0 1px rgba(140,226,63,.22), 0 14px 34px -20px var(--green-glow); }
+.char-grid .char-card.p { box-shadow: 0 0 0 1px rgba(255,63,164,.22), 0 14px 34px -20px var(--pink-glow); }
 
 .char-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 22px; margin-top: 46px; }
 .char-grid.hidden { display: none; }
@@ -405,18 +413,14 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 /* =================================================================
    STORY / PILOTE — horizontal scene scroller
    ================================================================= */
-.story { background: var(--bg); position: relative; }
-.story-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; padding: clamp(46px,8vh,96px) 0 clamp(28px,5vh,56px); }
+.story { background: var(--bg); }
 .story-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px; }
 .story-progress { display: flex; align-items: center; gap: 14px; color: var(--muted); font-size: 13px; }
 .story-progress-track { width: 120px; height: 4px; background: rgba(255,255,255,.1); border-radius: 100px; overflow: hidden; }
 .story-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg,var(--green),var(--pink)); border-radius: 100px; }
 
-.scenes { flex: 1 1 auto; display: flex; align-items: center; overflow: hidden; min-height: 0; margin-top: clamp(16px,3vh,34px); scrollbar-width: none; }
-.scenes::-webkit-scrollbar { display: none; }
-.scenes-track { display: flex; gap: 22px; padding: 0 6vw; will-change: transform; }
+.scenes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
 .scene {
-  flex: 0 0 clamp(280px, 36vw, 420px); scroll-snap-align: center;
   border-radius: var(--radius); overflow: hidden; background: var(--panel); border: 1px solid var(--line);
   transition: border-color .3s, box-shadow .3s;
 }
@@ -427,12 +431,8 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .scene-title { font-family:"Fredoka"; font-weight: 600; font-size: 1.3rem; margin: 4px 0 8px; }
 .scene-text { color: var(--muted); font-size: 14.5px; line-height: 1.5; }
 .scene-drag-hint { color: var(--muted-2); font-size: 13px; margin-top: 6px; }
-@media (max-width: 860px) {
-  .story-sticky { position: static; height: auto; padding: clamp(48px,9vw,80px) 0; }
-  .scenes { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-  .scenes-track { padding: 0 24px; }
-  .scene { flex: 0 0 clamp(260px, 82vw, 360px); }
-}
+@media (max-width: 860px) { .scenes-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .scenes-grid { grid-template-columns: 1fr; } }
 
 /* =================================================================
    VIDEOS

@@ -16,6 +16,8 @@
     "casting.title": `A top-tier<br><span class="text-grad-pink">voice cast</span>`,
     "casting.sub": `Target cast — to be confirmed. Iconic French voice actors envisioned to bring the Gloops to life. (Best-known dubbing roles shown for reference.)`,
     "casting.alt": `also considered`,
+    "char.eka.role": `The defector`,
+    "char.eka.desc": `First a ZogZog in the king's service, she switches to the Resistance when she realizes she was serving the wrong side.`,
     "cm.likes": `Likes`,
     "cm.dislikes": `Dislikes`,
     "cm.voice": `Voice · target cast`,
@@ -509,7 +511,7 @@
     mushmaster: { faction: "g", name: "MushMaster", voice: "Alexis Tomassian", hero: "assets/img/ai/chr_v2/MushMaster.jpg", sb: ["06","10"],
       fr: { role: "Le héros masqué", desc: "L'alter ego de Po : chapeau de champignon, balai cassé, philosophie « Be water ». Maladroit mais redoutable, il devient malgré lui le visage de la résistance verte.", likes: ["« Be water »","Les poses stylées au ralenti","Protéger les Gloops"], dislikes: ["SweetLife Industries","Le SugarMaxX","L'injustice"] },
       en: { role: "The masked hero", desc: "Po's alter ego: mushroom hat, broken broom, the 'Be water' philosophy. Clumsy yet formidable, he becomes the face of the green resistance despite himself.", likes: ["'Be water'","Slow-mo hero poses","Protecting the Gloops"], dislikes: ["SweetLife Industries","SugarMaxX","Injustice"] } },
-    po: { faction: "g", name: "Po", voice: "Alexis Tomassian", hero: "assets/img/ai/chr/Po.jpg", sb: ["02","04"],
+    po: { faction: "g", name: "Po", voice: "Alexis Tomassian", hero: "assets/img/ai/chr_v2/Po.jpg", sb: ["02","04"],
       fr: { role: "L'avatar du public", desc: "Balayeur-livreur de supérette, geek feignant accro à la télé et aux pubs. Amoureux transi de Lili, il enfile le champignon pour l'impressionner… et finit par y prendre goût.", likes: ["Lili","La sieste et la télé","Les conseils de Papy Mush"], dislikes: ["Son manager","Qu'on l'ignore","Son nom, « Potetoe »"] },
       en: { role: "The everyman", desc: "Lazy store clerk and delivery boy, a TV-and-ads-addicted geek. Smitten with Lili, he dons the mushroom to impress her — and ends up enjoying it.", likes: ["Lili","Naps and TV","Papy Mush's advice"], dislikes: ["His manager","Being ignored","His name, 'Potetoe'"] } },
     lili: { faction: "g", name: "Lili", voice: "Dorothée Pousséo", hero: "assets/img/ai/chr_v2/Lili.jpg", sb: ["02","07"],
@@ -536,11 +538,14 @@
     mito: { faction: "p", name: "Mito", voice: "Eric Métayer", hero: "assets/img/ai/chr_v2/Mito.jpg", sb: ["11","09"],
       fr: { role: "Le bras droit", desc: "Conseiller scientifique de Demon Sugar, pitchman de plans absurdes et très sournois. La morale ? À quoi ça sert ? Il fabrique des légumes artificiels.", likes: ["La science sans éthique","Plaire à son maître","Les inventions absurdes"], dislikes: ["Le vrai bio","Échouer","Les questions gênantes"] },
       en: { role: "The right hand", desc: "Demon Sugar's science advisor, pitchman of absurd schemes and very sneaky. Morals? What for? He manufactures artificial vegetables.", likes: ["Ethics-free science","Pleasing his master","Absurd inventions"], dislikes: ["Real organic","Failing","Awkward questions"] } },
-    zogzog: { faction: "p", name: "Les ZogZogs", voice: "Christophe Lemoine · Emmanuel Curtil", hero: "assets/img/ai/chr/ZogZog.jpg", sb: ["09","10"],
+    eka: { faction: "g", name: "Eka", voice: "—", hero: "assets/img/ai/chr_v2/Eka.jpg", sb: ["09","08"],
+      fr: { role: "La transfuge", desc: "D'abord ZogZog au service du roi, Eka bascule du côté de la Résistance quand elle réalise qu'elle servait le mauvais camp.", likes: ["La vérité","La rédemption","Les légumes (finalement)"], dislikes: ["Avoir été manipulée","Shu Ga","L'injustice"] },
+      en: { role: "The defector", desc: "First a ZogZog in the king's service, Eka switches to the Resistance when she realizes she was on the wrong side.", likes: ["The truth","Redemption","Vegetables (eventually)"], dislikes: ["Being manipulated","Shu Ga","Injustice"] } },
+    zogzog: { faction: "p", name: "Les ZogZogs", voice: "Christophe Lemoine · Emmanuel Curtil", hero: "assets/img/ai/chr_v2/ZogZog.jpg", sb: ["09","10"],
       fr: { role: "La police du sucre", desc: "La police-armée du roi, à la botte de Shu Ga. Idiots mais obéissants (Brutus, Zak, Joe, Gogol…). Lancés aux trousses du dangereux champignon.", likes: ["Le popcorn","Obéir","Le pouvoir"], dislikes: ["Réfléchir","MushMaster","Les légumes verts"] },
       en: { role: "The sugar police", desc: "The king's police-army, at Shu Ga's command. Idiots but obedient (Brutus, Zak, Joe, Gogol…). On the hunt for the dangerous mushroom.", likes: ["Popcorn","Following orders","Power"], dislikes: ["Thinking","MushMaster","Green vegetables"] } }
   };
-  const SRCMAP = { "MushMaster.jpg":"mushmaster", "Po.jpg":"po", "Lili.jpg":"lili", "PapyMush.jpg":"papymush", "Healfy-Ouss_N_Titp.png":"ouss", "Ouss.jpg":"ouss", "DemonSugar.jpg":"sugar", "King_N_ZogZog.jpg":"kevin", "King.jpg":"kevin", "Manager.jpg":"manager", "SugarHead.jpg":"sugarhead", "Scientific-Mito.png":"mito", "Mito.jpg":"mito", "ZogZog.jpg":"zogzog" };
+  const SRCMAP = { "MushMaster.jpg":"mushmaster", "Po.jpg":"po", "Lili.jpg":"lili", "PapyMush.jpg":"papymush", "Healfy-Ouss_N_Titp.png":"ouss", "Ouss.jpg":"ouss", "DemonSugar.jpg":"sugar", "King_N_ZogZog.jpg":"kevin", "King.jpg":"kevin", "Manager.jpg":"manager", "SugarHead.jpg":"sugarhead", "Scientific-Mito.png":"mito", "Mito.jpg":"mito", "ZogZog.jpg":"zogzog", "Eka.jpg":"eka" };
 
   const cmodal = $("#char-modal");
   if (cmodal) {
