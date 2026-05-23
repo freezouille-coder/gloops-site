@@ -103,6 +103,12 @@
     "videos.eyebrow": `In motion`,
     "videos.title": `The project is <span class="text-grad-pink">already alive</span>`,
     "videos.sub": `Teaser, pilot animatic, rigs and collection: production is underway. See for yourself.`,
+    "video.epic.tag": `Teaser 2 · epic`, "video.epic.t": `GLOOPS — The epic teaser`,
+    "video.epi.tag": `Teaser 3 · epilogue`, "video.epi.t": `The epilogue`,
+    "loops.eyebrow": `On loop · both camps & the collection`,
+    "loop.healthy": `The Resistance Team`, "loop.sugar": `The Sugar Team`,
+    "loop.traits": `Gloops V2`, "loop.richness": `A thousand Gloops`,
+    "decor.canette.t": `SugarMaxX — the drink`, "decor.canette.x": `The pink soda that hooks the whole city. “Drink, smile, repeat.”`,
     "video.teaser.tag": `Official teaser`, "video.teaser.t": `GLOOPS — First look`,
     "video.animatic.tag": `Animatic`, "video.animatic.t": `Pilot storyboard`,
     "video.rig.tag": `3D pipeline`, "video.rig.t": `Rig &amp; transformation`,
@@ -409,6 +415,18 @@
   lbClose && lbClose.addEventListener("click", closeLb);
   lb && lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
+
+  /* ---------- LOOP TILES (autoplay only when visible) ---------- */
+  const loopVids = $$(".loop-tile video");
+  if (loopVids.length) {
+    loopVids.forEach((v) => v.play().catch(() => {}));
+    if ("IntersectionObserver" in window) {
+      const lo = new IntersectionObserver((ents) => {
+        ents.forEach((e) => { if (e.isIntersecting) e.target.play().catch(() => {}); else e.target.pause(); });
+      }, { threshold: 0.1 });
+      loopVids.forEach((v) => lo.observe(v));
+    }
+  }
 
   /* ---------- DÉCOR GALLERY MODAL ---------- */
   const dmodal = $("#decor-modal");
