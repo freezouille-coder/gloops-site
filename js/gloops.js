@@ -140,6 +140,13 @@
     "merch.title": `A brand built to be <span class="text-grad-pink">collected</span>`,
     "merch.sub": `Figurine series, t-shirts, caps, mugs… Gloops made for merchandising and the community.`,
     "merch.figs": `The figurine collection`, "merch.goodies": `T-shirts · caps · mugs`,
+    "sm.eyebrow": `Ad break · SweetLife Co.`,
+    "sm.slogan": `“It's good for you. Too good.”`,
+    "sm.pitch.t": `The pink soda that runs the city`,
+    "sm.pitch.p": `One sip and you smile. Two and you're back. SugarMaxX is bottled happiness — SweetLife Co.'s favorite way to keep the Gloops hooked, docile… and grateful.`,
+    "sm.claim1": `⚡ +1000% energy*`, "sm.claim2": `😄 Zero guilt`, "sm.claim3": `🍬 Tastes like “more”`,
+    "sm.disclaimer": `*80% sugar. The rest, we'd rather not say. Enjoy. — SweetLife Co.`,
+    "sm.bill": `The ad that hooks you`, "sm.line": `Can · bottle · pack`,
     "eco.more": `Discover →`,
     "eco.eyebrow": `More than a series`,
     "eco.title": `A transmedia universe in <span class="text-grad-gold">360°</span>`,
@@ -471,6 +478,23 @@
     }
   }
 
+  /* ---------- CLICKABLE LOOPS / CAMPS -> open in lightbox ---------- */
+  $$(".loop-tile, .camp").forEach((el) => {
+    const v = $("video", el);
+    if (!v) return;
+    el.classList.add("clickable-video");
+    el.addEventListener("click", () => {
+      const src = v.getAttribute("src") || v.currentSrc;
+      openVideo(src);
+    });
+  });
+
+  /* ---------- CLICKABLE STORYBOARD FRAMES -> enlarge ---------- */
+  $$(".scene-img").forEach((img) => {
+    img.style.cursor = "zoom-in";
+    img.addEventListener("click", () => openImage(img.getAttribute("src")));
+  });
+
   /* ---------- DÉCOR GALLERY MODAL ---------- */
   const dmodal = $("#decor-modal");
   if (dmodal) {
@@ -514,40 +538,43 @@
   /* ---------- ECOSYSTEM PILLAR MODAL ---------- */
   const ECO = {
     "1": {
-      cls: "gold", num: "01", heroFit: "contain",
+      cls: "gold", num: "01", heroFit: "contain", posterRight: true,
       hero: "assets/img/posters/Gloops_Poster_WIP_01.jpg",
+      video: "assets/img/animatic/SB_Ep00_montage_06.mp4",
       fr: { eyebrow: "Le cœur de l'univers", title: "La série animée",
         pitch: ["GLOOPS, c'est d'abord une comédie d'action en 3D : un concierge devient malgré lui le héros d'une ville accro au soda rose.", "Un format court et nerveux, calibré pour le streaming et la TV jeunesse — porté par un univers déjà riche de plus de 20 personnages."],
-        chips: ["11 épisodes écrits (S1)", "Format court", "Comédie d'action 3D", "Pilote · bible · animatique prêts"] },
+        chips: ["11 épisodes écrits (S1)", "Format court", "Comédie d'action 3D", "Pilote · bible · animatique prêts"],
+        videoLabel: "▶ Voir l'animatique du pilote" },
       en: { eyebrow: "The core of the universe", title: "The animated series",
         pitch: ["GLOOPS is first an action comedy in 3D: a janitor becomes the unlikely hero of a city hooked on pink soda.", "A short, punchy format tuned for streaming and kids' TV — carried by a world already rich with 20+ characters."],
-        chips: ["11 episodes written (S1)", "Short format", "3D action comedy", "Pilot · bible · animatic ready"] },
-      cta: [{ kind: "video", src: "assets/img/animatic/SB_Ep00_montage_06.mp4", cls: "cta-pink", fr: "▶ Voir l'animatique du pilote", en: "▶ Watch the pilot animatic" }],
+        chips: ["11 episodes written (S1)", "Short format", "3D action comedy", "Pilot · bible · animatic ready"],
+        videoLabel: "▶ Watch the pilot animatic" },
+      cta: [],
       gallery: []
     },
     "2": {
       cls: "p", num: "02", heroFit: "cover",
-      hero: "assets/img/games/Sugarland_badland_A_01.jpg",
+      hero: "assets/img/ai/weapons/healthy_ultimate.jpg",
       fr: { eyebrow: "Jouable dès aujourd'hui", title: "Le jeu vidéo",
-        pitch: ["Un jeu de factions : les Avenggies (le camp vert) affrontent les Sugarheads (le camp rose) pour le contrôle d'îles de bonbon.", "Tout l'art conceptuel respecte le design de la série — arbres, maisons, plantes, usines : un même monde, déclinable à l'infini par notre pipeline.", "Et un customizer de Gloops est déjà jouable en ligne."],
-        chips: ["Jeu de factions", "Avenggies vs Sugarheads", "Concept art complet", "Démo en ligne"] },
+        pitch: ["Un jeu de factions : les Avenggies (le camp vert) affrontent les Sugarheads (le camp rose) pour le contrôle d'îles de bonbon.", "Au cœur du jeu : un ARSENAL loufoque. Canons-champignons, lance-donuts, mitraillettes en bonbon… chaque arme respecte le design de la série, rehaussé en rendu.", "Et un customizer de Gloops est déjà jouable en ligne."],
+        chips: ["Jeu de factions", "Arsenal loufoque", "Concept art des armes", "Démo en ligne"] },
       en: { eyebrow: "Playable today", title: "The video game",
-        pitch: ["A faction game: the Avenggies (green camp) face the Sugarheads (pink camp) for control of candy islands.", "All concept art respects the series design — trees, houses, plants, factories: one world, endlessly declinable through our pipeline.", "And a Gloops customizer is already playable online."],
-        chips: ["Faction game", "Avenggies vs Sugarheads", "Full concept art", "Demo online"] },
+        pitch: ["A faction game: the Avenggies (green camp) face the Sugarheads (pink camp) for control of candy islands.", "At the heart of the game: a wild ARSENAL. Mushroom-cannons, donut-launchers, candy machine-guns… every weapon respects the series design, elevated in render.", "And a Gloops customizer is already playable online."],
+        chips: ["Faction game", "Wild arsenal", "Weapon concept art", "Demo online"] },
       cta: [{ kind: "link", href: "https://freezouille-coder.github.io/gloops-customizer/", cls: "cta-primary", fr: "Jouer le customizer →", en: "Play the customizer →" }],
-      gallery: ["assets/img/games/Sugarheads_Char_01.jpg", "assets/img/games/Sugarheads_Char_03.png", "assets/img/games/Avenggies_Foret_A_01.jpg", "assets/img/games/Avenggies_Trees_01.png", "assets/img/games/Avenggies_Houses_A_01.png", "assets/img/games/Avenggies_Plantes_01.png", "assets/img/games/Ile_01.png", "assets/img/games/Sugarhead_Usine_01.png", "assets/img/games/Sugarhead_Trees_01.png"]
+      gallery: ["assets/img/ai/weapons/healthy_ultimate.jpg", "assets/img/ai/weapons/junk_ultimate.jpg", "assets/img/games/Healthy_CanonPlasma_02.jpg", "assets/img/games/Healthy_FusilPrecision_01.jpg", "assets/img/games/Healthy_Mitrailette_02.jpg", "assets/img/games/Junk_FusilPrecision_01.jpg", "assets/img/games/Junk_Melee_02.jpg", "assets/img/games/Junk_Mitraillette_Dos_01.jpg"]
     },
     "3": {
       cls: "p", num: "03", heroFit: "cover",
       hero: "assets/img/ai/merch/figurines_desk.jpg",
       fr: { eyebrow: "Une marque qui se collectionne", title: "Les figurines",
-        pitch: ["Des designs taillés pour le toy-art et le blind-box : silhouettes lisibles, couleurs pop, gueules mémorables.", "MushMaster, DemonSugar, Brutus… une collection premium déjà prototypée en rendus produit, prête pour le merchandising."],
-        chips: ["Designs blind-box ready", "Rendus produit prototypés", "Toy-art premium"] },
+        pitch: ["Des designs taillés pour le toy-art et le blind-box : silhouettes lisibles, couleurs pop, gueules mémorables.", "MushMaster, les ZogZog, Po, Lili… une collection premium déjà prototypée en rendus produit — en solo ou en duo, prête pour le merchandising."],
+        chips: ["Designs blind-box ready", "Rendus produit prototypés", "Solo ou en duo", "Toy-art premium"] },
       en: { eyebrow: "A brand to collect", title: "The figurines",
-        pitch: ["Designs built for toy-art and blind-box: readable silhouettes, pop colors, memorable faces.", "MushMaster, DemonSugar, Brutus… a premium collection already prototyped in product renders, ready for merchandising."],
-        chips: ["Blind-box ready designs", "Prototyped product renders", "Premium toy-art"] },
+        pitch: ["Designs built for toy-art and blind-box: readable silhouettes, pop colors, memorable faces.", "MushMaster, the ZogZog, Po, Lili… a premium collection already prototyped in product renders — solo or in pairs, ready for merchandising."],
+        chips: ["Blind-box ready designs", "Prototyped product renders", "Solo or in pairs", "Premium toy-art"] },
       cta: [],
-      gallery: ["assets/img/ai/merch/figurines_desk.jpg", "assets/img/ai/merch/merch_showcase.jpg", "assets/img/toys/MushMaster.jpg", "assets/img/toys/DemonSugar.jpg", "assets/img/toys/Brutus.jpg", "assets/img/toys/Joe.jpg", "assets/img/toys/SugarHead.jpg"]
+      gallery: ["assets/img/ai/merch/figurines_desk.jpg", "assets/img/ai/merch/fig_mushmaster.jpg", "assets/img/ai/merch/fig_zogzog.jpg", "assets/img/ai/merch/fig_po_lili.jpg", "assets/img/toys/DemonSugar.jpg", "assets/img/toys/SugarHead.jpg"]
     },
     "4": {
       cls: "p", num: "04", heroFit: "cover",
@@ -567,12 +594,14 @@
   if (emodal) {
     const emHero = $("#em-hero"), emNum = $("#em-num"), emEye = $("#em-eyebrow"),
           emTitle = $("#em-title"), emPitch = $("#em-pitch"), emChips = $("#em-chips"),
-          emCta = $("#em-cta"), emGal = $("#em-gallery"), emPanel = $("#em-panel");
+          emCta = $("#em-cta"), emGal = $("#em-gallery"), emPanel = $("#em-panel"),
+          emTop = $(".em-top", emodal), emVideo = $("#em-video");
     let curKey = null;
     const renderEco = (key) => {
       const d = ECO[key]; if (!d) return;
       const L = currentLang === "en" ? d.en : d.fr;
       emPanel.className = "em-panel " + (d.cls || "");
+      emTop.className = "em-top" + (d.posterRight ? " poster-right" : "");
       emHero.className = "em-hero" + (d.heroFit === "contain" ? " contain" : "");
       emHero.innerHTML = d.hero ? '<img src="' + d.hero + '" alt="">' : "";
       emNum.textContent = d.num || "";
@@ -595,6 +624,20 @@
           emCta.appendChild(b);
         }
       });
+      emVideo.innerHTML = "";
+      if (d.video) {
+        const card = document.createElement("button");
+        card.type = "button"; card.className = "em-video-card";
+        card.innerHTML = '<video src="' + d.video + '" muted loop playsinline preload="metadata"></video>'
+          + '<div class="video-shade"></div>'
+          + '<div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>'
+          + '<span class="em-video-label">' + (L.videoLabel || "▶") + '</span>';
+        const cv = $("video", card);
+        card.addEventListener("mouseenter", () => { cv && cv.play().catch(() => {}); });
+        card.addEventListener("mouseleave", () => { cv && cv.pause(); });
+        card.addEventListener("click", () => openVideo(d.video));
+        emVideo.appendChild(card);
+      }
       emGal.innerHTML = (d.gallery || []).map((src) => '<img src="' + src + '" alt="" loading="lazy">').join("");
       $$("img", emGal).forEach((img) => img.addEventListener("click", () => openImage(img.getAttribute("src"))));
     };
