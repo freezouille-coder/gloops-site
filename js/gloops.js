@@ -126,6 +126,20 @@
     "video.teaser.tag": `Official teaser`, "video.teaser.t": `GLOOPS — First look`,
     "video.animatic.tag": `Animatic`, "video.animatic.t": `Pilot storyboard`,
     "video.rig.tag": `3D pipeline`, "video.rig.t": `Rig &amp; transformation`,
+    "camps.g.e": `The Resistance`, "camps.g.t": `The Green Camp`, "camps.g.s": `Fresh, free, alive. Those who refuse the sugar.`,
+    "camps.p.e": `The SweetLife Empire`, "camps.p.t": `The Pink Camp`, "camps.p.s": `Sweet, addictive, under control. The SugarMaxX army.`,
+    "coll.eyebrow": `The tech &amp; the collection`,
+    "coll.title": `One asset. <span class="text-grad-gold">Millions of Gloops.</span>`,
+    "coll.sub": `Our rig is ultra-optimized: from a single character, we generate endless unique Gloops. Built for production from day one.`,
+    "coll.tech.t": `One rig, an infinity of characters`,
+    "coll.tech.p": `The same asset turns into millions of Gloops — colors, shapes, accessories. Fast production, controlled costs, and a world that grows forever.`,
+    "coll.ready.serie": `★ Series-ready`, "coll.ready.film": `★ Film-ready`, "coll.ready.game": `★ Game-ready`,
+    "coll.gen.tag": `The generator`, "coll.gen.t": `Endless collectible Gloops`,
+    "coll.v2.tag": `Animation test · art direction`, "coll.v2.t": `Gloops V2 — sneers &amp; speedlines`,
+    "merch.eyebrow": `Goodies &amp; figurines`,
+    "merch.title": `A brand built to be <span class="text-grad-pink">collected</span>`,
+    "merch.sub": `Figurine series, t-shirts, caps, mugs… Gloops made for merchandising and the community.`,
+    "merch.figs": `The figurine collection`, "merch.goodies": `T-shirts · caps · mugs`,
     "eco.eyebrow": `More than a series`,
     "eco.title": `A transmedia universe in <span class="text-grad-gold">360°</span>`,
     "eco.sub": `GLOOPS is designed from day one as a franchise. Four pillars, one world, complementary revenue streams.`,
@@ -430,8 +444,8 @@
   lb && lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
   window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
 
-  /* ---------- LOOP TILES (autoplay only when visible) ---------- */
-  const loopVids = $$(".loop-tile video");
+  /* ---------- LOOP TILES + CAMP BG (autoplay only when visible) ---------- */
+  const loopVids = $$(".loop-tile video, .camp video");
   if (loopVids.length) {
     loopVids.forEach((v) => v.play().catch(() => {}));
     if ("IntersectionObserver" in window) {

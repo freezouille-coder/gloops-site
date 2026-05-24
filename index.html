@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
   <title>GLOOPS — La série qui a du goût · Dossier investisseurs</title>
   <meta name="description" content="GLOOPS — une comédie d'animation 3D irrévérencieuse. Une méga-corporation rend le monde accro au SugarMaxX ; un balayeur devenu MushMaster mène la résistance. Série, jeu vidéo, figurines : un univers transmédia prêt à éclore.">
   <meta name="keywords" content="GLOOPS, série animée, animation 3D, transmédia, jeu vidéo, figurines, MushMaster, SugarMaxX, investissement, IP originale">
@@ -252,6 +251,26 @@
     </div>
   </section>
 
+  <!-- ===== LES DEUX CAMPS (full-bleed loops) ===== -->
+  <section class="camps" id="camps" aria-label="Les deux camps">
+    <div class="camp camp-g">
+      <video src="assets/clips/healthy_team.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="camp-overlay">
+        <span class="camp-eyebrow" data-i18n="camps.g.e">La Résistance</span>
+        <h2 class="camp-title" data-i18n="camps.g.t">Le camp Vert</h2>
+        <p class="camp-sub" data-i18n="camps.g.s">Frais, libre, vivant. Ceux qui refusent le sucre.</p>
+      </div>
+    </div>
+    <div class="camp camp-p">
+      <video src="assets/clips/sugar_team.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <div class="camp-overlay">
+        <span class="camp-eyebrow" data-i18n="camps.p.e">L'Empire SweetLife</span>
+        <h2 class="camp-title" data-i18n="camps.p.t">Le camp Rose</h2>
+        <p class="camp-sub" data-i18n="camps.p.s">Sucré, addictif, sous contrôle. L'armée du SugarMaxX.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== LES DÉMONS ===== -->
   <section class="section demons" id="demons">
     <div class="blob p" style="width:520px;height:520px;top:8%;right:-160px;"></div>
@@ -476,48 +495,76 @@
         <h2 class="section-title" data-i18n="videos.title">Le projet est <span class="text-grad-pink">déjà vivant</span></h2>
         <p class="section-sub" data-i18n="videos.sub">Teaser, animatique du pilote, rigs et collection : la production est lancée. Voyez par vous-même.</p>
       </div>
-      <!-- featured teaser -->
-      <div class="video-feature-wrap reveal">
-        <button class="video-card vfeat" data-video="assets/clips/teaser2_epic.mp4">
-          <video src="assets/clips/teaser2_epic.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
-          <div class="video-shade"></div>
-          <div class="video-play big"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-          <div class="video-meta"><span class="video-tag" data-i18n="video.epic.tag">Teaser 2 · épique</span><h3 class="video-title" data-i18n="video.epic.t">GLOOPS — Le teaser épique</h3><span class="video-cta" data-i18n="video.watch">▶ Regarder</span></div>
-        </button>
-      </div>
-      <!-- secondary teasers & making-of -->
-      <div class="video-grid">
+      <div class="teaser-row">
         <button class="video-card reveal" data-video="assets/clips/teaser01_final_Square.mp4">
           <video src="assets/clips/teaser01_final_Square.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
           <div class="video-shade"></div><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-          <div class="video-meta"><span class="video-tag" data-i18n="video.teaser.tag">Teaser officiel</span><h3 class="video-title" data-i18n="video.teaser.t">GLOOPS — Premier aperçu</h3></div>
+          <div class="video-meta"><span class="video-tag" data-i18n="video.teaser.tag">Teaser 1 · officiel</span><h3 class="video-title" data-i18n="video.teaser.t">Premier aperçu</h3></div>
         </button>
-        <button class="video-card reveal d1" data-video="assets/clips/teaser3_epilogue.mp4">
+        <button class="video-card reveal d1" data-video="assets/clips/teaser2_epic.mp4">
+          <video src="assets/clips/teaser2_epic.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
+          <div class="video-shade"></div><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
+          <div class="video-meta"><span class="video-tag" data-i18n="video.epic.tag">Teaser 2 · épique</span><h3 class="video-title" data-i18n="video.epic.t">Le teaser épique</h3></div>
+        </button>
+        <button class="video-card reveal d2" data-video="assets/clips/teaser3_epilogue.mp4">
           <video src="assets/clips/teaser3_epilogue.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
           <div class="video-shade"></div><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
           <div class="video-meta"><span class="video-tag" data-i18n="video.epi.tag">Teaser 3 · épilogue</span><h3 class="video-title" data-i18n="video.epi.t">L'épilogue</h3></div>
         </button>
-        <button class="video-card reveal d2" data-video="assets/img/animatic/SB_Ep00_montage_06.mp4">
-          <video src="assets/img/animatic/SB_Ep00_montage_06.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
-          <div class="video-shade"></div><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-          <div class="video-meta"><span class="video-tag" data-i18n="video.animatic.tag">Animatique</span><h3 class="video-title" data-i18n="video.animatic.t">Storyboard du pilote</h3></div>
-        </button>
-        <button class="video-card reveal d3" data-video="assets/clips/Gloops_Rig_Transformation.mp4">
-          <video src="assets/clips/Gloops_Rig_Transformation.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
-          <div class="video-shade"></div><div class="video-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
-          <div class="video-meta"><span class="video-tag" data-i18n="video.rig.tag">Pipeline 3D</span><h3 class="video-title" data-i18n="video.rig.t">Rig &amp; transformation</h3></div>
-        </button>
+      </div>
+      <button class="video-card animatic-card reveal" data-video="assets/img/animatic/SB_Ep00_montage_06.mp4">
+        <video src="assets/img/animatic/SB_Ep00_montage_06.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
+        <div class="video-shade"></div><div class="video-play big"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
+        <div class="video-meta"><span class="video-tag" data-i18n="video.animatic.tag">Animatique</span><h3 class="video-title" data-i18n="video.animatic.t">Storyboard complet du pilote</h3><span class="video-cta" data-i18n="video.watch">▶ Regarder</span></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== TECHNO & COLLECTION ===== -->
+  <section class="section collection" id="collection">
+    <div class="container">
+      <div class="duality-head reveal">
+        <span class="eyebrow" data-i18n="coll.eyebrow">La techno &amp; la collection</span>
+        <h2 class="section-title" data-i18n="coll.title">Un seul asset. <span class="text-grad-gold">Des millions de Gloops.</span></h2>
+        <p class="section-sub" data-i18n="coll.sub">Notre rig est ultra-optimisé : à partir d'un seul personnage, on génère une infinité de Gloops uniques. Pensé production dès le départ.</p>
       </div>
 
-      <div class="loop-head reveal">
-        <span class="eyebrow" data-i18n="loops.eyebrow">La collection · des Gloops à l'infini</span>
-        <p class="section-sub" data-i18n="loops.sub">Chaque Gloop est unique et collectionnable — généré à partir d'un seul asset de production.</p>
+      <div class="tech-feature reveal">
+        <button class="video-card vfeat" data-video="assets/clips/Gloops_Rig_Transformation.mp4">
+          <video src="assets/clips/Gloops_Rig_Transformation.mp4" muted loop playsinline preload="metadata" class="v-poster"></video>
+          <div class="video-shade"></div><div class="video-play big"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg></div>
+          <div class="video-meta"><span class="video-tag" data-i18n="video.rig.tag">Pipeline 3D</span><h3 class="video-title" data-i18n="video.rig.t">Rig &amp; transformation</h3></div>
+        </button>
+        <div class="tech-text">
+          <h3 class="tech-h" data-i18n="coll.tech.t">Un rig, une infinité de personnages</h3>
+          <p class="tech-p" data-i18n="coll.tech.p">Le même asset se décline en des millions de Gloops — couleurs, formes, accessoires. Production rapide, coûts maîtrisés, et un univers qui grandit à l'infini.</p>
+          <div class="ready-chips">
+            <span class="chip" data-i18n="coll.ready.serie">★ Série-ready</span>
+            <span class="chip" data-i18n="coll.ready.film">★ Film-ready</span>
+            <span class="chip" data-i18n="coll.ready.game">★ Game-ready</span>
+          </div>
+        </div>
       </div>
-      <div class="loop-grid">
-        <figure class="loop-tile reveal"><video src="assets/clips/collection_gloops.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption data-i18n="loop.collection">Gloops collectionnables</figcaption></figure>
-        <figure class="loop-tile g reveal d1"><video src="assets/clips/healthy_team.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption data-i18n="loop.healthy">La Team Résistance</figcaption></figure>
-        <figure class="loop-tile p reveal d2"><video src="assets/clips/sugar_team.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption data-i18n="loop.sugar">La Team Sugar</figcaption></figure>
-        <figure class="loop-tile reveal d3"><video src="assets/clips/gloops_traits.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption data-i18n="loop.traits">Les Gloops V2</figcaption></figure>
+
+      <div class="staged-loops">
+        <figure class="loop-tile big reveal">
+          <video src="assets/clips/collection_gloops.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <figcaption><span class="lt-tag" data-i18n="coll.gen.tag">Le générateur</span><span class="lt-name" data-i18n="coll.gen.t">Des Gloops collectionnables à l'infini</span></figcaption>
+        </figure>
+        <figure class="loop-tile big reveal d1">
+          <video src="assets/clips/gloops_traits.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <figcaption><span class="lt-tag" data-i18n="coll.v2.tag">Test d'animation · direction artistique</span><span class="lt-name" data-i18n="coll.v2.t">Gloops V2 — sneers &amp; speedlines</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="merch-head reveal">
+        <span class="eyebrow" data-i18n="merch.eyebrow">Goodies &amp; figurines</span>
+        <h3 class="section-title sm" data-i18n="merch.title">Une marque qui se <span class="text-grad-pink">collectionne</span></h3>
+        <p class="section-sub" data-i18n="merch.sub">Figurines en série, t-shirts, casquettes, mugs… des Gloops faits pour le merchandising et la communauté.</p>
+      </div>
+      <div class="merch-grid">
+        <figure class="merch-card reveal"><img src="assets/img/ai/merch/figurines_desk.jpg" alt="Figurines GLOOPS" loading="lazy"><figcaption data-i18n="merch.figs">La collection de figurines</figcaption></figure>
+        <figure class="merch-card reveal d1"><img src="assets/img/ai/merch/merch_showcase.jpg" alt="Merch GLOOPS" loading="lazy"><figcaption data-i18n="merch.goodies">T-shirts · casquettes · mugs</figcaption></figure>
       </div>
     </div>
   </section>
