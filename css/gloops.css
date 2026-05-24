@@ -582,6 +582,11 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .pillar-foot .pillar-status { margin-top: 0; }
 .pillar-cta { display: inline-flex; align-items: center; gap: 6px; font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 14px; padding: 9px 18px; border-radius: 100px; color: #16280a; background: linear-gradient(100deg, #aef06a, var(--green)); box-shadow: 0 10px 26px -12px var(--green-glow); transition: transform .25s var(--ease), box-shadow .25s; }
 .pillar-cta:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 16px 34px -12px var(--green-glow); }
+.pillar[data-eco] { cursor: pointer; }
+.pillar-more { margin-top: 14px; font-family:"Fredoka",sans-serif; font-weight: 600; font-size: 13px; letter-spacing: .03em; color: var(--gold); opacity: 0; transform: translateY(6px); transition: opacity .35s var(--ease), transform .35s var(--ease); width: fit-content; }
+.pillar:hover .pillar-more, .pillar:focus-visible .pillar-more { opacity: 1; transform: none; }
+.pillar:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+@media (hover: none){ .pillar-more { opacity: .85; transform: none; } }
 
 @media (max-width: 820px){ .pillars { grid-template-columns: 1fr; } }
 
@@ -645,9 +650,10 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 /* =================================================================
    VIDEO LIGHTBOX
    ================================================================= */
-.lightbox { position: fixed; inset: 0; z-index: 9500; display: flex; align-items: center; justify-content: center; padding: 4vw; background: rgba(6,3,10,.92); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.lightbox { position: fixed; inset: 0; z-index: 9700; display: flex; align-items: center; justify-content: center; padding: 4vw; background: rgba(6,3,10,.92); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
 .lightbox.open { opacity: 1; visibility: visible; }
-.lightbox video { max-width: 100%; max-height: 86vh; border-radius: 16px; box-shadow: 0 30px 90px rgba(0,0,0,.7); background: #000; }
+.lightbox video, .lightbox img { max-width: 100%; max-height: 86vh; border-radius: 16px; box-shadow: 0 30px 90px rgba(0,0,0,.7); background: #000; }
+.lightbox img { object-fit: contain; }
 .lb-close { position: absolute; top: 24px; right: 28px; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
 .lb-close:hover { background: rgba(255,63,164,.4); transform: rotate(90deg); }
 .lb-close svg { width: 24px; height: 24px; }
@@ -722,6 +728,48 @@ body[data-lang="en"] .lang-switch .lang-en { color: var(--text); }
 .dm-prev:hover { transform: translateY(-50%) translateX(-3px); } .dm-next:hover { transform: translateY(-50%) translateX(3px); }
 .dm-nav svg { width: 26px; height: 26px; }
 @media (max-width: 760px){ .dm-prev { left: 8px; } .dm-next { right: 8px; } .dm-nav { width: 46px; height: 46px; } .dm-panel figcaption { flex-direction: column; align-items: flex-start; gap: 6px; } }
+
+/* =================================================================
+   ECOSYSTEM PILLAR MODAL
+   ================================================================= */
+.eco-modal { position: fixed; inset: 0; z-index: 9600; display: flex; align-items: center; justify-content: center; padding: 4vw; background: rgba(6,3,10,.92); backdrop-filter: blur(14px); opacity: 0; visibility: hidden; transition: opacity .4s var(--ease), visibility .4s; }
+.eco-modal.open { opacity: 1; visibility: visible; }
+.em-panel { width: min(980px, 96vw); max-height: 90vh; overflow-y: auto; background: var(--bg-2); border: 1px solid var(--line-strong); border-radius: var(--radius); box-shadow: 0 40px 100px rgba(0,0,0,.7); transform: translateY(20px) scale(.98); transition: transform .5s var(--ease-out); }
+.eco-modal.open .em-panel { transform: none; }
+.em-panel.g { border-color: rgba(140,226,63,.45); } .em-panel.p { border-color: rgba(255,63,164,.45); } .em-panel.gold { border-color: rgba(255,206,74,.5); }
+.em-top { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 0; }
+.em-hero { min-height: 300px; display: grid; place-items: center; background: radial-gradient(120% 100% at 50% 30%, rgba(255,63,164,.18), #0c0712 72%); overflow: hidden; }
+.em-panel.g .em-hero { background: radial-gradient(120% 100% at 50% 30%, rgba(140,226,63,.2), #0c0712 72%); }
+.em-panel.gold .em-hero { background: radial-gradient(120% 100% at 50% 30%, rgba(255,206,74,.2), #0c0712 72%); }
+.em-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.em-hero.contain img { object-fit: contain; padding: 22px; }
+.em-intro { padding: clamp(26px,3.5vw,40px); display: flex; flex-direction: column; }
+.em-num { font-family:"Fredoka",sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .22em; color: var(--gold); }
+.em-eyebrow { margin-top: 6px; font-family:"Fredoka",sans-serif; font-weight: 600; font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--pink-soft); }
+.em-panel.g .em-eyebrow { color: #cfff9e; }
+.em-title { font-family:"Baloo 2","Fredoka",sans-serif; font-weight: 800; font-size: clamp(1.7rem,3.2vw,2.4rem); line-height: 1.02; margin-top: 8px; }
+.em-pitch { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; }
+.em-pitch p { color: var(--muted); font-size: 1rem; line-height: 1.6; }
+.em-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.em-chips .chip { font-family:"Fredoka",sans-serif; font-weight: 600; font-size: 12.5px; padding: 7px 13px; border-radius: 100px; border: 1px solid var(--line-strong); color: var(--text); background: rgba(255,255,255,.04); }
+.em-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.em-cta a, .em-cta button { display: inline-flex; align-items: center; gap: 8px; font-family:"Fredoka",sans-serif; font-weight: 600; font-size: 14px; padding: 11px 20px; border-radius: 100px; cursor: pointer; transition: transform .25s var(--ease), box-shadow .25s; }
+.em-cta .cta-primary { color: #16280a; background: linear-gradient(100deg, #aef06a, var(--green)); box-shadow: 0 12px 30px -12px var(--green-glow); }
+.em-cta .cta-pink { color: #fff; background: linear-gradient(100deg, var(--pink), #ff7ac2); box-shadow: 0 12px 30px -12px rgba(255,63,164,.7); }
+.em-cta a:hover, .em-cta button:hover { transform: translateY(-2px) scale(1.03); }
+.em-gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; padding: 0 clamp(20px,3vw,32px) clamp(24px,3vw,32px); }
+.em-gallery:empty { display: none; }
+.em-gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-3); cursor: zoom-in; transition: transform .3s var(--ease), border-color .3s; }
+.em-gallery img:hover { transform: scale(1.03); border-color: var(--line-strong); }
+.em-close { position: absolute; top: 24px; right: 28px; z-index: 2; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid var(--line-strong); display: grid; place-items: center; transition: background .25s, transform .25s; }
+.em-close:hover { background: rgba(255,63,164,.4); transform: rotate(90deg); }
+.em-close svg { width: 24px; height: 24px; }
+@media (max-width: 760px){
+  .em-top { grid-template-columns: 1fr; }
+  .em-hero { min-height: 0; aspect-ratio: 16/10; }
+  .em-hero.contain { aspect-ratio: 4/3; }
+  .em-gallery { grid-template-columns: repeat(2,1fr); }
+}
 
 /* =================================================================
    MUSIC TOGGLE

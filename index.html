@@ -578,14 +578,15 @@
         <p class="section-sub" data-i18n="eco.sub">GLOOPS est pensé dès le départ comme une franchise. Quatre piliers, une même monde, des sources de revenus complémentaires.</p>
       </div>
       <div class="pillars">
-        <article class="pillar reveal">
+        <article class="pillar reveal" data-eco="1" role="button" tabindex="0">
           <div class="pillar-bg" style="background-image:url('assets/img/posters/Gloops_Poster_WIP_01.jpg')"></div>
           <span class="pillar-num">01</span>
           <h3 data-i18n="eco.1.t">Série animée</h3>
           <p data-i18n="eco.1.x">Le cœur de l'univers. Comédie d'action 3D, format court et calibré pour le streaming et la TV jeunesse. Pilote écrit, bible et animatique prêts.</p>
           <span class="pillar-status" data-i18n="eco.1.s">● Pilote &amp; bible prêts</span>
+          <span class="pillar-more" data-i18n="eco.more">Découvrir →</span>
         </article>
-        <article class="pillar reveal d1">
+        <article class="pillar reveal d1" data-eco="2" role="button" tabindex="0">
           <div class="pillar-bg" style="background-image:url('assets/img/games/Sugarheads_Char_01.jpg')"></div>
           <span class="pillar-num">02</span>
           <h3 data-i18n="eco.2.t">Jeu vidéo</h3>
@@ -594,20 +595,23 @@
             <span class="pillar-status" data-i18n="eco.2.s">● Démo jouable en ligne</span>
             <a href="https://freezouille-coder.github.io/gloops-customizer/" target="_blank" rel="noopener" class="pillar-cta" data-i18n="eco.2.cta">Jouer le customizer →</a>
           </div>
+          <span class="pillar-more" data-i18n="eco.more">Découvrir →</span>
         </article>
-        <article class="pillar reveal d2">
+        <article class="pillar reveal d2" data-eco="3" role="button" tabindex="0">
           <div class="pillar-bg" style="background-image:url('assets/img/toys/MushMaster.jpg')"></div>
           <span class="pillar-num">03</span>
           <h3 data-i18n="eco.3.t">Figurines &amp; collection</h3>
           <p data-i18n="eco.3.x">Des designs taillés pour le toy-art et le blind-box. MushMaster, DemonSugar, le Roi… une collection premium déjà prototypée en rendus produit.</p>
           <span class="pillar-status dev" data-i18n="eco.3.s">● Prototypes prêts</span>
+          <span class="pillar-more" data-i18n="eco.more">Découvrir →</span>
         </article>
-        <article class="pillar reveal d3">
+        <article class="pillar reveal d3" data-eco="4" role="button" tabindex="0">
           <div class="pillar-bg" style="background-image:url('assets/img/posters/Gloops_Twitter_Banner_WIP_01.jpg')"></div>
           <span class="pillar-num">04</span>
           <h3 data-i18n="eco.4.t">Communauté &amp; social</h3>
           <p data-i18n="eco.4.x">Des personnages-memes faits pour TikTok, Instagram et YouTube Shorts. Une présence sociale (@wearegloops) qui transforme l'audience en communauté.</p>
           <span class="pillar-status" data-i18n="eco.4.s">● En ligne</span>
+          <span class="pillar-more" data-i18n="eco.more">Découvrir →</span>
         </article>
       </div>
     </div>
@@ -749,10 +753,30 @@
     </figure>
   </div>
 
+  <!-- ===== ECOSYSTEM PILLAR MODAL ===== -->
+  <div class="eco-modal" id="eco-modal" aria-hidden="true">
+    <button class="em-close" id="em-close" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="em-panel" id="em-panel">
+      <div class="em-top">
+        <div class="em-hero" id="em-hero"></div>
+        <div class="em-intro">
+          <span class="em-num" id="em-num"></span>
+          <span class="em-eyebrow" id="em-eyebrow"></span>
+          <h3 class="em-title" id="em-title"></h3>
+          <div class="em-pitch" id="em-pitch"></div>
+          <div class="em-chips" id="em-chips"></div>
+          <div class="em-cta" id="em-cta"></div>
+        </div>
+      </div>
+      <div class="em-gallery" id="em-gallery"></div>
+    </div>
+  </div>
+
   <!-- ===== LIGHTBOX ===== -->
   <div class="lightbox" id="lightbox">
     <button class="lb-close" id="lb-close" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     <video id="lb-video" controls playsinline></video>
+    <img id="lb-img" alt="" hidden>
   </div>
 
   <!-- ===== MUSIC ===== -->

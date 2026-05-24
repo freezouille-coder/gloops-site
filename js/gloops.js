@@ -140,6 +140,7 @@
     "merch.title": `A brand built to be <span class="text-grad-pink">collected</span>`,
     "merch.sub": `Figurine series, t-shirts, caps, mugs… Gloops made for merchandising and the community.`,
     "merch.figs": `The figurine collection`, "merch.goodies": `T-shirts · caps · mugs`,
+    "eco.more": `Discover →`,
     "eco.eyebrow": `More than a series`,
     "eco.title": `A transmedia universe in <span class="text-grad-gold">360°</span>`,
     "eco.sub": `GLOOPS is designed from day one as a franchise. Four pillars, one world, complementary revenue streams.`,
@@ -194,6 +195,7 @@
     document.documentElement.lang = currentLang;
     document.body.dataset.lang = currentLang;
     try { localStorage.setItem("gloops-lang", currentLang); } catch (e) {}
+    if (typeof window.__ecoReRender === "function") window.__ecoReRender();
   }
 
   // apply saved preference
@@ -413,10 +415,29 @@
     }, { passive: true });
   }
 
-  /* ---------- VIDEO PREVIEW on hover + LIGHTBOX ---------- */
+  /* ---------- VIDEO PREVIEW on hover + LIGHTBOX (video + image) ---------- */
   const lb = $("#lightbox");
   const lbVid = $("#lb-video");
+  const lbImg = $("#lb-img");
   const lbClose = $("#lb-close");
+
+  const openVideo = (src) => {
+    if (!src || !lb || !lbVid) return;
+    if (lbImg) { lbImg.hidden = true; lbImg.removeAttribute("src"); }
+    lbVid.hidden = false;
+    lbVid.src = src;
+    lb.classList.add("open");
+    document.body.classList.add("no-scroll");
+    lbVid.play().catch(() => {});
+  };
+  const openImage = (src) => {
+    if (!src || !lb || !lbImg) return;
+    if (lbVid) { lbVid.pause(); lbVid.removeAttribute("src"); lbVid.load(); lbVid.hidden = true; }
+    lbImg.hidden = false;
+    lbImg.src = src;
+    lb.classList.add("open");
+    document.body.classList.add("no-scroll");
+  };
 
   $$(".video-card").forEach((card) => {
     const v = $("video", card);
@@ -424,25 +445,19 @@
       card.addEventListener("mouseenter", () => { v.play().catch(() => {}); });
       card.addEventListener("mouseleave", () => { v.pause(); });
     }
-    card.addEventListener("click", () => {
-      const src = card.dataset.video;
-      if (!src || !lb || !lbVid) return;
-      lbVid.src = src;
-      lb.classList.add("open");
-      document.body.classList.add("no-scroll");
-      lbVid.play().catch(() => {});
-    });
+    card.addEventListener("click", () => openVideo(card.dataset.video));
   });
 
   const closeLb = () => {
     if (!lb) return;
     lb.classList.remove("open");
-    document.body.classList.remove("no-scroll");
+    if (!document.querySelector("#eco-modal.open")) document.body.classList.remove("no-scroll");
     if (lbVid) { lbVid.pause(); lbVid.removeAttribute("src"); lbVid.load(); }
+    if (lbImg) { lbImg.removeAttribute("src"); }
   };
   lbClose && lbClose.addEventListener("click", closeLb);
   lb && lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
-  window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
+  window.addEventListener("keydown", (e) => { if (e.key === "Escape" && lb && lb.classList.contains("open")) closeLb(); });
 
   /* ---------- LOOP TILES + CAMP BG (autoplay only when visible) ---------- */
   const loopVids = $$(".loop-tile video, .camp video");
@@ -494,6 +509,112 @@
       else if (e.key === "ArrowLeft") go(-1);
       else if (e.key === "ArrowRight") go(1);
     });
+  }
+
+  /* ---------- ECOSYSTEM PILLAR MODAL ---------- */
+  const ECO = {
+    "1": {
+      cls: "gold", num: "01", heroFit: "contain",
+      hero: "assets/img/posters/Gloops_Poster_WIP_01.jpg",
+      fr: { eyebrow: "Le cœur de l'univers", title: "La série animée",
+        pitch: ["GLOOPS, c'est d'abord une comédie d'action en 3D : un concierge devient malgré lui le héros d'une ville accro au soda rose.", "Un format court et nerveux, calibré pour le streaming et la TV jeunesse — porté par un univers déjà riche de plus de 20 personnages."],
+        chips: ["11 épisodes écrits (S1)", "Format court", "Comédie d'action 3D", "Pilote · bible · animatique prêts"] },
+      en: { eyebrow: "The core of the universe", title: "The animated series",
+        pitch: ["GLOOPS is first an action comedy in 3D: a janitor becomes the unlikely hero of a city hooked on pink soda.", "A short, punchy format tuned for streaming and kids' TV — carried by a world already rich with 20+ characters."],
+        chips: ["11 episodes written (S1)", "Short format", "3D action comedy", "Pilot · bible · animatic ready"] },
+      cta: [{ kind: "video", src: "assets/img/animatic/SB_Ep00_montage_06.mp4", cls: "cta-pink", fr: "▶ Voir l'animatique du pilote", en: "▶ Watch the pilot animatic" }],
+      gallery: []
+    },
+    "2": {
+      cls: "p", num: "02", heroFit: "cover",
+      hero: "assets/img/games/Sugarland_badland_A_01.jpg",
+      fr: { eyebrow: "Jouable dès aujourd'hui", title: "Le jeu vidéo",
+        pitch: ["Un jeu de factions : les Avenggies (le camp vert) affrontent les Sugarheads (le camp rose) pour le contrôle d'îles de bonbon.", "Tout l'art conceptuel respecte le design de la série — arbres, maisons, plantes, usines : un même monde, déclinable à l'infini par notre pipeline.", "Et un customizer de Gloops est déjà jouable en ligne."],
+        chips: ["Jeu de factions", "Avenggies vs Sugarheads", "Concept art complet", "Démo en ligne"] },
+      en: { eyebrow: "Playable today", title: "The video game",
+        pitch: ["A faction game: the Avenggies (green camp) face the Sugarheads (pink camp) for control of candy islands.", "All concept art respects the series design — trees, houses, plants, factories: one world, endlessly declinable through our pipeline.", "And a Gloops customizer is already playable online."],
+        chips: ["Faction game", "Avenggies vs Sugarheads", "Full concept art", "Demo online"] },
+      cta: [{ kind: "link", href: "https://freezouille-coder.github.io/gloops-customizer/", cls: "cta-primary", fr: "Jouer le customizer →", en: "Play the customizer →" }],
+      gallery: ["assets/img/games/Sugarheads_Char_01.jpg", "assets/img/games/Sugarheads_Char_03.png", "assets/img/games/Avenggies_Foret_A_01.jpg", "assets/img/games/Avenggies_Trees_01.png", "assets/img/games/Avenggies_Houses_A_01.png", "assets/img/games/Avenggies_Plantes_01.png", "assets/img/games/Ile_01.png", "assets/img/games/Sugarhead_Usine_01.png", "assets/img/games/Sugarhead_Trees_01.png"]
+    },
+    "3": {
+      cls: "p", num: "03", heroFit: "cover",
+      hero: "assets/img/ai/merch/figurines_desk.jpg",
+      fr: { eyebrow: "Une marque qui se collectionne", title: "Les figurines",
+        pitch: ["Des designs taillés pour le toy-art et le blind-box : silhouettes lisibles, couleurs pop, gueules mémorables.", "MushMaster, DemonSugar, Brutus… une collection premium déjà prototypée en rendus produit, prête pour le merchandising."],
+        chips: ["Designs blind-box ready", "Rendus produit prototypés", "Toy-art premium"] },
+      en: { eyebrow: "A brand to collect", title: "The figurines",
+        pitch: ["Designs built for toy-art and blind-box: readable silhouettes, pop colors, memorable faces.", "MushMaster, DemonSugar, Brutus… a premium collection already prototyped in product renders, ready for merchandising."],
+        chips: ["Blind-box ready designs", "Prototyped product renders", "Premium toy-art"] },
+      cta: [],
+      gallery: ["assets/img/ai/merch/figurines_desk.jpg", "assets/img/ai/merch/merch_showcase.jpg", "assets/img/toys/MushMaster.jpg", "assets/img/toys/DemonSugar.jpg", "assets/img/toys/Brutus.jpg", "assets/img/toys/Joe.jpg", "assets/img/toys/SugarHead.jpg"]
+    },
+    "4": {
+      cls: "p", num: "04", heroFit: "cover",
+      hero: "assets/img/posters/Gloops_Twitter_Banner_WIP_01.jpg",
+      fr: { eyebrow: "La communauté d'abord", title: "Communauté & social",
+        pitch: ["Notre stratégie : la communauté d'abord. On construit l'audience avant la diffusion, avec des personnages-memes faits pour TikTok, Instagram et YouTube Shorts.", "Chaque Gloop est un format social : punchy, drôle, partageable. Une présence qui transforme les spectateurs en fans — et les fans en ambassadeurs."],
+        chips: ["Community first", "TikTok · Instagram · Shorts", "Personnages-memes", "@wearegloops"] },
+      en: { eyebrow: "Community first", title: "Community & social",
+        pitch: ["Our strategy: community first. We build the audience before broadcast, with meme-ready characters made for TikTok, Instagram and YouTube Shorts.", "Every Gloop is a social format: punchy, funny, shareable. A presence that turns viewers into fans — and fans into ambassadors."],
+        chips: ["Community first", "TikTok · Instagram · Shorts", "Meme-ready characters", "@wearegloops"] },
+      cta: [{ kind: "link", href: "https://www.instagram.com/wearegloops/", cls: "cta-pink", fr: "Suivre sur Instagram →", en: "Follow on Instagram →" }],
+      gallery: []
+    }
+  };
+
+  const emodal = $("#eco-modal");
+  if (emodal) {
+    const emHero = $("#em-hero"), emNum = $("#em-num"), emEye = $("#em-eyebrow"),
+          emTitle = $("#em-title"), emPitch = $("#em-pitch"), emChips = $("#em-chips"),
+          emCta = $("#em-cta"), emGal = $("#em-gallery"), emPanel = $("#em-panel");
+    let curKey = null;
+    const renderEco = (key) => {
+      const d = ECO[key]; if (!d) return;
+      const L = currentLang === "en" ? d.en : d.fr;
+      emPanel.className = "em-panel " + (d.cls || "");
+      emHero.className = "em-hero" + (d.heroFit === "contain" ? " contain" : "");
+      emHero.innerHTML = d.hero ? '<img src="' + d.hero + '" alt="">' : "";
+      emNum.textContent = d.num || "";
+      emEye.textContent = L.eyebrow || "";
+      emTitle.textContent = L.title || "";
+      emPitch.innerHTML = (L.pitch || []).map((p) => "<p>" + p + "</p>").join("");
+      emChips.innerHTML = (L.chips || []).map((c) => '<span class="chip">' + c + "</span>").join("");
+      emCta.innerHTML = "";
+      (d.cta || []).forEach((c) => {
+        const label = currentLang === "en" ? c.en : c.fr;
+        if (c.kind === "link") {
+          const a = document.createElement("a");
+          a.href = c.href; a.target = "_blank"; a.rel = "noopener";
+          a.className = c.cls || ""; a.textContent = label;
+          emCta.appendChild(a);
+        } else if (c.kind === "video") {
+          const b = document.createElement("button");
+          b.type = "button"; b.className = c.cls || ""; b.textContent = label;
+          b.addEventListener("click", () => openVideo(c.src));
+          emCta.appendChild(b);
+        }
+      });
+      emGal.innerHTML = (d.gallery || []).map((src) => '<img src="' + src + '" alt="" loading="lazy">').join("");
+      $$("img", emGal).forEach((img) => img.addEventListener("click", () => openImage(img.getAttribute("src"))));
+    };
+    const openEco = (key) => {
+      curKey = key; renderEco(key);
+      emodal.classList.add("open"); emodal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll"); emPanel.scrollTop = 0;
+    };
+    const closeEco = () => {
+      emodal.classList.remove("open"); emodal.setAttribute("aria-hidden", "true");
+      if (!(lb && lb.classList.contains("open"))) document.body.classList.remove("no-scroll");
+    };
+    window.__ecoReRender = () => { if (emodal.classList.contains("open") && curKey) renderEco(curKey); };
+    $$(".pillar[data-eco]").forEach((p) => {
+      p.addEventListener("click", (e) => { if (e.target.closest("a")) return; openEco(p.dataset.eco); });
+      p.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEco(p.dataset.eco); } });
+    });
+    $("#em-close").addEventListener("click", closeEco);
+    emodal.addEventListener("click", (e) => { if (e.target === emodal) closeEco(); });
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape" && emodal.classList.contains("open")) closeEco(); });
   }
 
   /* ---------- STAT COUNTERS ---------- */
